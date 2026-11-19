@@ -135,26 +135,26 @@ export default function HomePage({ onOpenWhatsApp }) {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent flex items-center">
-                  <div className="max-w-7xl mx-auto w-full px-6 sm:px-12 lg:px-16">
-                    <div className="max-w-2xl space-y-5 text-white">
-                      <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-sage-100 text-xs font-semibold tracking-wide uppercase">
+                  <div className="max-w-7xl mx-auto w-full px-5 sm:px-12 lg:px-16 py-6 sm:py-0">
+                    <div className="max-w-2xl space-y-3.5 sm:space-y-5 text-white">
+                      <span className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-sage-100 text-[11px] sm:text-xs font-semibold tracking-wide uppercase">
                         {slide.hasDot && <span className="w-2 h-2 rounded-full bg-emerald-400"></span>}
                         {slide.badge}
                       </span>
-                      <h1 className="font-serif text-4xl sm:text-6xl font-semibold leading-[1.08] tracking-tight text-white">
+                      <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.12] sm:leading-[1.08] tracking-tight text-white">
                         {slide.title1}
                         <br />
                         {slide.title2}
                       </h1>
-                      <p className="text-base sm:text-lg text-sage-100/90 max-w-lg leading-relaxed">
+                      <p className="text-xs sm:text-base lg:text-lg text-sage-100/90 max-w-lg leading-relaxed line-clamp-3 sm:line-clamp-none">
                         {slide.subtitle}
                       </p>
-                      <div className="flex flex-wrap gap-3 pt-2">
+                      <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-1 sm:pt-2">
                         {slide.primaryBtn.color === 'whatsapp' ? (
                           <button
                             type="button"
                             onClick={() => navigateTo(slide.primaryBtn.action)}
-                            className="px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-semibold shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer"
+                            className="px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-xs sm:text-sm font-semibold shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer"
                           >
                             {slide.primaryBtn.label}
                           </button>
@@ -162,7 +162,7 @@ export default function HomePage({ onOpenWhatsApp }) {
                           <button
                             type="button"
                             onClick={() => navigateTo(slide.primaryBtn.action)}
-                            className="px-7 py-3.5 rounded-full bg-white text-ink hover:bg-sage-50 text-sm font-semibold shadow-lg transition-colors cursor-pointer"
+                            className="px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full bg-white text-ink hover:bg-sage-50 text-xs sm:text-sm font-semibold shadow-lg transition-colors cursor-pointer"
                           >
                             {slide.primaryBtn.label}
                           </button>
@@ -171,7 +171,7 @@ export default function HomePage({ onOpenWhatsApp }) {
                           <button
                             type="button"
                             onClick={() => navigateTo(slide.secondaryBtn.action)}
-                            className="px-7 py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white text-sm font-semibold transition-colors cursor-pointer"
+                            className="px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
                           >
                             {slide.secondaryBtn.label}
                           </button>
@@ -218,12 +218,12 @@ export default function HomePage({ onOpenWhatsApp }) {
           ))}
         </div>
 
-        {/* Carousel Controls */}
+        {/* Desktop Carousel Side Arrows (Hidden on mobile to keep text completely unobstructed) */}
         <button
           type="button"
           onClick={prevSlide}
           aria-label="Previous Slide"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-ink backdrop-blur-md flex items-center justify-center shadow transition-all cursor-pointer"
+          className="hidden sm:flex absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-ink backdrop-blur-md items-center justify-center shadow transition-all cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -233,15 +233,15 @@ export default function HomePage({ onOpenWhatsApp }) {
           type="button"
           onClick={nextSlide}
           aria-label="Next Slide"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-ink backdrop-blur-md flex items-center justify-center shadow transition-all cursor-pointer"
+          className="hidden sm:flex absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-ink backdrop-blur-md items-center justify-center shadow transition-all cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
-        {/* Indicators */}
-        <div className="absolute bottom-6 left-6 sm:left-12 lg:left-16 z-20 flex items-center gap-2">
+        {/* Desktop Indicators */}
+        <div className="hidden sm:flex absolute bottom-6 left-6 sm:left-12 lg:left-16 z-20 items-center gap-2">
           {HERO_SLIDES_FULL.map((_, idx) => (
             <button
               key={idx}
@@ -254,6 +254,46 @@ export default function HomePage({ onOpenWhatsApp }) {
                 }`}
             />
           ))}
+        </div>
+
+        {/* Mobile Bottom Bar: Indicators & Compact Prev/Next Controls (100% Clear of Text) */}
+        <div className="flex sm:hidden absolute bottom-4 left-5 right-5 z-20 items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            {HERO_SLIDES_FULL.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Slide ${idx + 1}`}
+                className={`transition-all cursor-pointer ${
+                  idx === currentSlide ? 'w-5 h-1.5 rounded-full bg-white' : 'w-1.5 h-1.5 rounded-full bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={prevSlide}
+              aria-label="Previous Slide"
+              className="w-8 h-8 rounded-full bg-ink/75 hover:bg-ink text-white backdrop-blur-md flex items-center justify-center shadow cursor-pointer border border-white/25 active:scale-95 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={nextSlide}
+              aria-label="Next Slide"
+              className="w-8 h-8 rounded-full bg-ink/75 hover:bg-ink text-white backdrop-blur-md flex items-center justify-center shadow cursor-pointer border border-white/25 active:scale-95 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
