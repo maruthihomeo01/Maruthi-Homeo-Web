@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwasthyaHomeo | Maruthi Homeo Centre, Rajajinagar Bengaluru</title>
+    <meta name="description" content="Official clinical portal for Maruthi Homeo Centre & Pharmacy, Rajajinagar Bengaluru. Classical constitutional homeopathy, in-clinic and video consultations, authentic German remedies." />
+    <meta name="keywords" content="Homeopathy Rajajinagar, Maruthi Homeo Centre, SwasthyaHomeo, Homeopathic Clinic Bangalore, Eczema, Psoriasis, Allergies, PCOS, Pediatric Homeopathy" />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SwasthyaHomeo | Maruthi Homeo Centre, Rajajinagar" />
+    <meta property="og:description" content="Personalized, non-toxic root-cause homeopathy for your entire family. Book in-clinic or online consultations." />
+    <meta property="og:image" content="/images/Logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+    
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Structured Data for Google Local Medical Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "Maruthi Homeo Centre & Pharmacy",
+      "alternateName": "SwasthyaHomeo",
+      "image": "/images/clinic-apothecary.jpeg",
+      "url": "https://swasthyahomeo.com",
+      "telephone": "+919740009664",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop No: 244/B, ESI Hospital Main Rd, 2nd Block, 41st Cross, Rajajinagar",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560010",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.990019,
+        "longitude": 77.5556717
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "20:30"
+        }
+      ],
+      "medicalSpecialty": "Homeopathic",
+      "availableService": [
+        {
+          "@type": "MedicalProcedure",
+          "name": "Constitutional Homeopathy Consultation"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Pediatric & Skin Disorder Management"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-alabaster text-ink font-sans antialiased selection:bg-sage-200 selection:text-sage-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
