@@ -19,10 +19,10 @@ export default function ConfirmationModal() {
     title = 'Medicine Enquiry Received';
     description = (
       <>
-        Thank you, <strong className="text-ink">{name}</strong>. Your inquiry for homeopathic medicines ({brand || 'Genuine Brands'}, {fulfillment}) has been logged for {CLINIC_INFO.legalName}. Our pharmacy counter will review availability and notify you on <strong className="text-ink">{phone}</strong> shortly.
+        Thank you, <strong className="text-ink">{name}</strong>. Your inquiry for homoeopathic medicines ({brand || 'Genuine Brands'}, {fulfillment}) has been logged for {CLINIC_INFO.legalName}. Our pharmacy counter will review availability and notify you on <strong className="text-ink">{phone}</strong> shortly.
       </>
     );
-    waMessage = `Namaste! I submitted a medicine availability inquiry on SwasthyaHomeo:
+    waMessage = `Namaste! I submitted a medicine availability inquiry on ${CLINIC_INFO.name}:
 • Name: ${name}
 • Phone: ${phone}
 • Preference: ${fulfillment} (${brand || 'Genuine Brands'})
@@ -37,7 +37,7 @@ Please confirm stock availability and pricing.`;
         Thank you, <strong className="text-ink">{name}</strong>. Your consultation inquiry regarding <strong className="text-sage-800">{careArea || 'General Health'}</strong> ({mode || 'In-Clinic'}, {timingWindow || 'Clinic Hours'}) has been received. Our clinic desk will check doctor availability and contact you on <strong className="text-ink">{phone}</strong>.
       </>
     );
-    waMessage = `Namaste! I submitted a doctor consultation inquiry on SwasthyaHomeo:
+    waMessage = `Namaste! I submitted a doctor consultation inquiry on ${CLINIC_INFO.name}:
 • Name: ${name}
 • Phone: ${phone}
 • Care Area: ${careArea || 'General'}

@@ -1,101 +1,130 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '../context';
-import { CLINIC_INFO } from '../data/clinicData';
+import { CLINIC_INFO, BRAND_PARTNERS } from '../data/clinicData';
+
+const CLINICAL_STEPS = [
+  {
+    num: '01',
+    title: 'Constitutional Case-Taking',
+    subtitle: '30–45 Min In-Depth Evaluation',
+    tag: 'Root-Cause Discovery',
+    description: 'Unhurried evaluation exploring physical symptoms, thermal modalities (chilly vs. warm sensitivities), sleep patterns, emotional stress, and hereditary traits.',
+    highlights: ['Totality of symptoms assessment', 'Zero rushed 5-minute visits', 'Thermal & emotional profiling']
+  },
+  {
+    num: '02',
+    title: 'Precision Simillimum Dispensing',
+    subtitle: 'Fresh In-House Preparation',
+    tag: 'Pharmacopoeia Pure',
+    description: 'Pinpoint selection of your single constitutional simillimum, compounded fresh at our Rajajinagar counter in UV-protected amber glass with pure cane sugar globules #30.',
+    highlights: ['Pure cane sugar globules #30', 'UV pharmaceutical amber glass', 'Zero steroids or additives']
+  },
+  {
+    num: '03',
+    title: 'Recovery Review & Tapering',
+    subtitle: '3–4 Week Follow-Up Cadence',
+    tag: 'Natural Self-Regulation',
+    description: 'Systematic review tracking milestone recovery, reducing symptom flare-ups, and safely tapering remedy potencies as innate self-regulation takes hold.',
+    highlights: ['Measurable symptom tapering', 'Non-habit forming care', 'Long-term constitutional vitality']
+  }
+];
 
 const ACCREDITATIONS = [
   {
     image: '/images/Ayush.avif',
-    alt: 'Ministry of AYUSH Certification Logo',
+    alt: 'Ministry of AYUSH Statutory Certification',
     title: 'Ministry of AYUSH',
-    badge: 'Government of India',
-    sub: 'Statutory Body Compliance'
+    sub: 'Statutory Body · Govt. of India'
   },
   {
     image: '/images/GMP.avif',
-    alt: 'GMP Certified Quality Standards Logo',
-    title: 'GMP Certified Quality',
-    badge: 'Manufacturing Standard',
-    sub: 'Certified Sterile Laboratories'
+    alt: 'GMP Certified Quality Standards',
+    title: 'GMP Certified',
+    sub: 'Sterile Cleanroom Standards'
   },
   {
     image: '/images/FSSAI.avif',
-    alt: 'FSSAI Food & Health Standards Logo',
+    alt: 'FSSAI Food Safety Standards Compliance',
     title: 'FSSAI Compliant',
-    badge: 'Safety Authority',
-    sub: 'Health & Nutritive Standards'
+    sub: 'Nutritional Purity Standard'
   },
   {
     image: '/images/MadeinIndia.avif',
-    alt: 'Made in India Initiative Logo',
-    title: 'Made in India',
-    badge: 'National Quality',
-    sub: 'Indian & German Standards'
+    alt: 'National & German Pharmacopoeia Standards',
+    title: 'National & German Standards',
+    sub: 'HPI & European Pharmacopoeia'
   }
 ];
 
 export default function AboutPage() {
   const { navigateTo } = useNavigation();
 
+  // Interactive & Animated Clinical Methodology Stepper
+  const [activeStep, setActiveStep] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % CLINICAL_STEPS.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-16 animate-in fade-in duration-300">
-      {/* 1. HERO SECTION: Punchy Narrative & Visual Identity */}
-      <section className="grid lg:grid-cols-12 gap-8 items-center">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-16 sm:space-y-20 animate-in fade-in duration-300">
+      
+      {/* ============================================================== */}
+      {/* 1. HERO: Concise Introduction & Visual                         */}
+      {/* ============================================================== */}
+      <section className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <div className="lg:col-span-7 space-y-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Serving Rajajinagar Since Inception</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-900 text-xs font-semibold tracking-wide">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span>Authorized Distributor · Retail Dispensary · Classical Clinic</span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-5xl font-semibold text-ink leading-[1.15]">
-            Classical Homeopathy. Genuine German Remedies.
-          </h1>
+          <div className="space-y-3">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink leading-tight tracking-tight">
+              Purity in Potency. <br />
+              <span className="italic font-normal text-sage-800">Precision in Practice.</span>
+            </h1>
+            <p className="text-muted text-sm sm:text-base leading-relaxed">
+              Located on ESI Hospital Main Road in Rajajinagar, <strong className="text-ink font-semibold">{CLINIC_INFO.shortName}</strong> operates as an authorized wholesale distributor, premier retail dispensary, and classical constitutional clinic.
+            </p>
+            <p className="text-muted text-xs sm:text-sm leading-relaxed border-l-2 border-sage-500 pl-3.5 py-0.5">
+              We supply medical professionals and families across Karnataka with 100% genuine German remedies (Dr. Reckeweg, Dr. Willmar Schwabe, ADEL) and verified Indian formulations, paired with unhurried doctor consultations.
+            </p>
+          </div>
 
-          <p className="text-muted text-sm sm:text-base leading-relaxed">
-            Located on ESI Hospital Main Road in Rajajinagar 2nd Block, <strong className="text-ink font-semibold">{CLINIC_INFO.shortName}</strong> ({CLINIC_INFO.legalName}) is a dedicated homeopathic pharmacy and consultation centre.
-          </p>
-
-          <p className="text-muted text-sm sm:text-base leading-relaxed">
-            We provide Bengaluru families with 100% genuine, unadulterated remedies directly imported from Germany (Dr. Reckeweg, Schwabe) alongside unhurried constitutional doctor consultations that treat root causes without steroid suppression.
-          </p>
-
-          {/* Quick CTA Actions */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
+          <div className="pt-1">
             <button
               type="button"
               onClick={() => navigateTo('contact')}
-              className="px-6 py-3 rounded-xl bg-sage-800 hover:bg-sage-900 text-white font-semibold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sage-800 hover:bg-sage-900 text-white font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
             >
-              Visit Store or Enquire &rarr;
+              <span>Contact Clinic &amp; Dispensary</span>
+              <span>&rarr;</span>
             </button>
-            <a
-              href={`https://wa.me/${CLINIC_INFO.whatsappNumber}?text=${encodeURIComponent(
-                'Hello Maruthi Homeo Centre! I would like to inquire about medicine availability / consultation.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-xs sm:text-sm shadow-md transition-all inline-flex items-center gap-2"
-            >
-              <span>Chat on WhatsApp</span>
-            </a>
           </div>
         </div>
 
-        {/* Hero Image Showcase */}
+        {/* Visual Apothecary Card */}
         <div className="lg:col-span-5">
-          <div className="rounded-3xl overflow-hidden border border-sand shadow-lg bg-sage-900 relative group">
+          <div className="relative rounded-2xl overflow-hidden shadow-sm border border-sand bg-sage-950">
             <img
               src="/images/clinic-apothecary.jpeg"
-              alt="Maruthi Homeo Centre Apothecary"
-              className="w-full h-80 sm:h-96 object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+              alt="Maruthi Homoeo Centre Dispensary"
+              className="w-full h-72 sm:h-80 object-cover opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent flex flex-col justify-end p-6 text-white space-y-1">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-300">
-                Dispensary &amp; Clinic
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent flex flex-col justify-end p-5 text-white space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">
+                Apothecary &amp; Consultation
               </span>
-              <p className="font-serif text-xl font-semibold text-white">
+              <p className="font-serif text-base font-semibold text-white">
                 {CLINIC_INFO.legalName}
               </p>
-              <p className="text-xs text-sage-200">
+              <p className="text-[11px] text-sage-200">
                 {CLINIC_INFO.address.street}, {CLINIC_INFO.locality}
               </p>
             </div>
@@ -103,201 +132,282 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 2. WHY FAMILIES TRUST US: 3,000+ Metrics Section (Now 2nd Section) */}
-      <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-6 rounded-2xl bg-white border border-sand shadow-xs space-y-2 text-center hover:border-sage-400 hover:shadow-sm transition-all">
-          <span className="font-serif text-3xl sm:text-4xl font-bold text-sage-800 block">3,000+</span>
-          <h4 className="font-semibold text-sm text-ink">Remedies in Stock</h4>
-          <p className="text-xs text-muted">Full catalog of German &amp; Indian potencies, dilutions &amp; bio-chemics.</p>
-        </div>
-
-        <div className="p-6 rounded-2xl bg-white border border-sand shadow-xs space-y-2 text-center hover:border-sage-400 hover:shadow-sm transition-all">
-          <span className="font-serif text-3xl sm:text-4xl font-bold text-sage-800 block">100%</span>
-          <h4 className="font-semibold text-sm text-ink">Zero Steroids</h4>
-          <p className="text-xs text-muted">Pure Hahnemannian healing without chemical suppression.</p>
-        </div>
-
-        <div className="p-6 rounded-2xl bg-white border border-sand shadow-xs space-y-2 text-center hover:border-sage-400 hover:shadow-sm transition-all">
-          <span className="font-serif text-3xl sm:text-4xl font-bold text-sage-800 block">Amber</span>
-          <h4 className="font-semibold text-sm text-ink">Glass Packaging</h4>
-          <p className="text-xs text-muted">UV protection against heat and zero plastic chemical leaching.</p>
-        </div>
-
-        <div className="p-6 rounded-2xl bg-white border border-sand shadow-xs space-y-2 text-center hover:border-sage-400 hover:shadow-sm transition-all">
-          <span className="font-serif text-3xl sm:text-4xl font-bold text-sage-800 block">Express</span>
-          <h4 className="font-semibold text-sm text-ink">Bengaluru Courier</h4>
-          <p className="text-xs text-muted">In-store pickup in Rajajinagar or doorstep delivery across India.</p>
+      {/* ============================================================== */}
+      {/* 2. STAT BAR: Clean Architectural Metric Strip (Minimal)        */}
+      {/* ============================================================== */}
+      <section className="border-y border-sand/70 py-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-sand/70">
+          <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
+            <span className="font-serif text-2xl font-bold text-ink block">Tri-Pillar</span>
+            <p className="text-xs text-muted">Distributor · Retailer · Clinic</p>
+          </div>
+          <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
+            <span className="font-serif text-2xl font-bold text-ink block">3,000+</span>
+            <p className="text-xs text-muted">German &amp; Indian remedies</p>
+          </div>
+          <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
+            <span className="font-serif text-2xl font-bold text-ink block">100% Pure</span>
+            <p className="text-xs text-muted">Zero steroids or suppressants</p>
+          </div>
+          <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
+            <span className="font-serif text-2xl font-bold text-ink block">Karnataka</span>
+            <p className="text-xs text-muted">Statewide supply &amp; courier</p>
+          </div>
         </div>
       </section>
 
-      {/* 3. TWO CORE PILLARS: The Retail Pharmacy & The Consultation Clinic */}
+      {/* ============================================================== */}
+      {/* 3. CLINICAL METHODOLOGY: Interactive Animated Experience       */}
+      {/* ============================================================== */}
+      <section
+        className="space-y-6"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div className="space-y-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+              Clinical Methodology
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+              How Your Healing Pathway Unfolds
+            </h2>
+          </div>
+          <span className="text-[11px] text-muted font-medium">
+            Interactive protocol · Select stage to explore
+          </span>
+        </div>
+
+        {/* Interactive Step Switcher Tabs with Animated Progress Line */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 relative">
+          {CLINICAL_STEPS.map((step, idx) => {
+            const isActive = activeStep === idx;
+            return (
+              <button
+                key={step.num}
+                type="button"
+                onClick={() => setActiveStep(idx)}
+                className={`p-3 sm:p-4 rounded-xl text-left transition-all duration-300 relative cursor-pointer border ${
+                  isActive
+                    ? 'bg-white border-sage-600 shadow-sm'
+                    : 'bg-alabaster/80 border-sand hover:bg-white text-muted'
+                }`}
+              >
+                {/* Animated progress indicator bar on active card */}
+                {isActive && (
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-sage-600 rounded-t-xl" />
+                )}
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`font-mono text-xs font-bold ${
+                      isActive ? 'text-sage-800' : 'text-muted/60'
+                    }`}
+                  >
+                    {step.num}
+                  </span>
+                  {isActive && (
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                  )}
+                </div>
+                <p
+                  className={`font-serif text-xs sm:text-sm font-semibold mt-1 leading-snug line-clamp-1 ${
+                    isActive ? 'text-ink' : 'text-muted'
+                  }`}
+                >
+                  {step.title}
+                </p>
+                <p className="text-[10px] text-muted hidden sm:block mt-0.5">
+                  {step.subtitle}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Stage Detailed Breakdown (Minimal & Focused) */}
+        <div className="p-6 sm:p-7 rounded-2xl bg-white border border-sand shadow-xs space-y-4 transition-all duration-300">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sand/50 pb-3">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-sage-100 text-sage-900 border border-sage-200">
+                Stage {CLINICAL_STEPS[activeStep].num} · {CLINICAL_STEPS[activeStep].tag}
+              </span>
+              <h3 className="font-serif text-lg sm:text-xl font-semibold text-ink mt-1.5">
+                {CLINICAL_STEPS[activeStep].title}
+              </h3>
+            </div>
+            <span className="text-xs font-medium text-sage-700 bg-sand/40 px-2.5 py-1 rounded-lg">
+              {CLINICAL_STEPS[activeStep].subtitle}
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-muted leading-relaxed">
+            {CLINICAL_STEPS[activeStep].description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-1 text-xs">
+            {CLINICAL_STEPS[activeStep].highlights.map((item, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-alabaster border border-sand/60 text-ink/80 text-[11px] font-medium"
+              >
+                <span className="text-emerald-600 font-bold">&check;</span>
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 4. THE THREE WINGS: Core Capabilities (Concise, NO BUTTONS)    */}
+      {/* ============================================================== */}
       <section className="space-y-6">
-        <div className="text-center max-w-2xl mx-auto space-y-1.5">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">Two Wings of Care</span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">Pharmacy First, Clinical Precision</h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Pillar 1: Full-Stock Dispensary */}
-          <div className="p-7 sm:p-8 rounded-3xl bg-white border border-sand shadow-sm space-y-5 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-2xl shadow-xs">
-                💊
-              </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-100/70 text-amber-900 border border-amber-200">
-                Dispensary Wing
-              </span>
-            </div>
-
-            <div>
-              <h3 className="font-serif text-2xl font-semibold text-ink">
-                Authorized German &amp; Indian Pharmacy
-              </h3>
-              <p className="text-xs sm:text-sm text-muted mt-2 leading-relaxed">
-                Direct stockists of sealed Dr. Reckeweg (Germany) specialty drops R1–R89, Schwabe Germany dilutions, mother tinctures, and bio-chemic salts.
-              </p>
-            </div>
-
-            <div className="space-y-2.5 pt-3 border-t border-sand text-xs text-ink">
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-600 font-bold mt-0.5">✓</span>
-                <span>Complete potencies: 30CH, 200CH, 1M, 10M &amp; 180+ Mother Tinctures (Q)</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-600 font-bold mt-0.5">✓</span>
-                <span>Freshly prepared inert cane sugar globules #30 in UV-blocking amber glass</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-600 font-bold mt-0.5">✓</span>
-                <span><strong>Mon–Sat (10 AM – 8:30 PM):</strong> Walk in anytime; no appointment needed for medicines</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Pillar 2: Clinical Consultation */}
-          <div className="p-7 sm:p-8 rounded-3xl bg-sage-800 text-white shadow-sm space-y-5 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <span className="w-12 h-12 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center text-2xl shadow-xs">
-                🩺
-              </span>
-              <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/15 text-emerald-200 border border-white/20">
-                Clinical Wing
-              </span>
-            </div>
-
-            <div>
-              <h3 className="font-serif text-2xl font-semibold text-white">
-                Classical 1-on-1 Constitutional Doctor Care
-              </h3>
-              <p className="text-xs sm:text-sm text-sage-200 mt-2 leading-relaxed">
-                Thorough, individualized case evaluation designed to uncover the constitutional root cause of chronic skin, allergy, migraine, and child immunity issues.
-              </p>
-            </div>
-
-            <div className="space-y-2.5 pt-3 border-t border-white/15 text-xs text-sage-100">
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-bold mt-0.5">✓</span>
-                <span><strong>30–45 Minute Case-Taking:</strong> Physical symptoms, thermal modalities &amp; stress factors</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-bold mt-0.5">✓</span>
-                <span>Zero steroids, zero drowsiness, zero chemical habit-formation</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-bold mt-0.5">✓</span>
-                <span><strong>Doctor Timings (Mon–Sat):</strong> 10:00 AM – 1:30 PM &amp; 6:00 PM – 8:30 PM</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. THE 3-STEP HEALING JOURNEY: Clean Stepped Flow */}
-      <section className="bg-white rounded-3xl border border-sand p-6 sm:p-10 shadow-sm space-y-6">
-        <div className="space-y-1">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">Patient Care Protocol</span>
-          <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
-            How Your Healing Journey Unfolds
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-5 pt-2">
-          <div className="p-5 rounded-2xl bg-alabaster border border-sand/70 space-y-2">
-            <span className="w-8 h-8 rounded-full bg-sage-800 text-white font-bold text-xs flex items-center justify-center">
-              1
-            </span>
-            <h3 className="font-serif text-base font-semibold text-ink">Constitutional Discovery</h3>
-            <p className="text-xs text-muted leading-relaxed">
-              Detailed 30–45 min assessment examining past medical history, thermal modalities (chilly vs. warm), sleep patterns, and emotional stressors.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-alabaster border border-sand/70 space-y-2">
-            <span className="w-8 h-8 rounded-full bg-sage-800 text-white font-bold text-xs flex items-center justify-center">
-              2
-            </span>
-            <h3 className="font-serif text-base font-semibold text-ink">Fresh Precision Dispensing</h3>
-            <p className="text-xs text-muted leading-relaxed">
-              We determine your single constitutional simillimum and dispense it fresh at our Rajajinagar counter in sterile globules or amber dropper bottles.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-alabaster border border-sand/70 space-y-2">
-            <span className="w-8 h-8 rounded-full bg-sage-800 text-white font-bold text-xs flex items-center justify-center">
-              3
-            </span>
-            <h3 className="font-serif text-base font-semibold text-ink">Milestone &amp; Tapering Review</h3>
-            <p className="text-xs text-muted leading-relaxed">
-              Check-in after 3–4 weeks to monitor reduction in symptom flare-ups, tapering doses as your body’s natural self-regulation takes hold.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. PROMINENT LICENCES & ACCREDITATIONS (Prominent Logos, No Text Clutter, Placed Last) */}
-      <section className="bg-white rounded-3xl border border-sand p-6 sm:p-10 shadow-sm space-y-6">
-        <div className="text-center max-w-2xl mx-auto space-y-1.5">
+        <div className="space-y-1 max-w-xl">
           <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
-            Official Standards &amp; Approvals
+            Operational Infrastructure
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
-            Licences, Certifications &amp; Compliance
+            The Three Wings
           </h2>
           <p className="text-xs text-muted">
-            Operating with complete regulatory compliance, certified laboratory sourcing, and verified quality standards.
+            Seamlessly integrating wholesale distribution, walk-in pharmacy, and doctor care.
           </p>
         </div>
 
-        {/* 4 Prominent Logo Cards with Generous Breathing Space */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-2">
-          {ACCREDITATIONS.map((item, idx) => (
+        <div className="grid md:grid-cols-3 gap-5 pt-1">
+          {/* Wing 1 */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-sand/80 space-y-3">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-slate-500 block">
+              WING 01 / B2B SUPPLY
+            </span>
+            <h3 className="font-serif text-base font-semibold text-ink">
+              Wholesale Distributor
+            </h3>
+            <p className="text-xs text-muted leading-relaxed">
+              Authorized state stockist supplying genuine German and Indian homoeopathic medicines to 100+ practicing doctors, dispensaries, and clinics across Karnataka with original factory-sealed cases.
+            </p>
+          </div>
+
+          {/* Wing 2 */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-sand/80 space-y-3">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-amber-700 block">
+              WING 02 / DISPENSARY
+            </span>
+            <h3 className="font-serif text-base font-semibold text-ink">
+              Retail Pharmacy
+            </h3>
+            <p className="text-xs text-muted leading-relaxed">
+              Walk-in apothecary on ESI Hospital Main Road stocking over 3,000+ sealed remedies, Reckeweg drops R1–R89, and mother tinctures dispensed fresh in UV amber glass with pure cane sugar globules.
+            </p>
+          </div>
+
+          {/* Wing 3 */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-sand/80 space-y-3">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-sage-700 block">
+              WING 03 / CLINICAL CARE
+            </span>
+            <h3 className="font-serif text-base font-semibold text-ink">
+              Doctor Consultations
+            </h3>
+            <p className="text-xs text-muted leading-relaxed">
+              30–45 minute unhurried constitutional evaluations treating chronic metabolic, allergic, pediatric, and joint conditions at the root cause without chemical steroid suppression.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 5. OFFICIAL BRAND PARTNERS (SECOND LAST ON PAGE)                */}
+      {/* Clean, open view: NO card borders, NO backgrounds, NO buttons  */}
+      {/* ============================================================== */}
+      <section className="space-y-8 pt-4 border-t border-sand/70">
+        <div className="space-y-1 max-w-xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+            Direct Sourcing &amp; Distribution
+          </span>
+          <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
+            Official Brand Partners &amp; Laboratories
+          </h2>
+          <p className="text-xs text-muted leading-relaxed">
+            Authorized wholesale distributor and direct stockist for Germany and India's benchmark homoeopathic laboratories.
+          </p>
+        </div>
+
+        {/* Clean, Borderless Brand Wall: Transparent canvas, clear view, NO boxed cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-8 sm:gap-x-10 pt-2">
+          {BRAND_PARTNERS.map((brand) => (
             <div
-              key={idx}
-              className="p-6 sm:p-7 rounded-2xl bg-alabaster border border-sand hover:border-sage-400 hover:shadow-md transition-all flex flex-col items-center justify-between text-center group"
+              key={brand.id}
+              className="flex flex-col items-center text-center group transition-transform hover:-translate-y-1 duration-200"
             >
-              {/* Prominent Logo Container */}
-              <div className="w-full h-24 sm:h-28 flex items-center justify-center p-2 mb-3">
+              {/* Logo View: Open, borderless, high clarity */}
+              <div className="h-14 sm:h-16 w-full flex items-center justify-center mb-2.5">
                 <img
-                  src={item.image}
-                  alt={item.alt}
-                  className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300 drop-shadow-xs"
+                  src={brand.logo}
+                  alt={`${brand.name} Logo`}
+                  loading="lazy"
+                  className="max-h-11 sm:max-h-13 max-w-[120px] sm:max-w-[140px] object-contain group-hover:scale-105 transition-all duration-300"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
 
-              {/* Clean, Non-Crowded Labels */}
-              <div className="space-y-1 w-full pt-2 border-t border-sand/60">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-sage-700 bg-white px-2.5 py-0.5 rounded-full border border-sand inline-block">
-                  {item.badge}
-                </span>
-                <h3 className="font-serif text-sm sm:text-base font-semibold text-ink leading-tight pt-1">
-                  {item.title}
+              {/* Clean Typography */}
+              <div className="space-y-0.5">
+                <h3 className="font-serif text-xs sm:text-sm font-semibold text-ink group-hover:text-sage-800 transition-colors">
+                  {brand.name}
                 </h3>
-                <p className="text-[11px] text-muted font-medium">{item.sub}</p>
+                <p className="text-[10px] sm:text-[11px] text-sage-700 font-medium">
+                  {brand.origin}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* ============================================================== */}
+      {/* 6. STATUTORY ACCREDITATIONS: AT THE BOTTOM OF THE PAGE          */}
+      {/* Sleek & Compact Trust Strip (Minimal Text)                      */}
+      {/* ============================================================== */}
+      <section className="space-y-4 pt-4 border-t border-sand/70">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+            Statutory Standards &amp; Accreditations
+          </span>
+          <span className="text-[11px] text-muted">
+            Karnataka State Drugs Control Dept. Compliant
+          </span>
+        </div>
+
+        {/* Sleek Compact Trust Strip: 4 logos with minimal labels */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+          {ACCREDITATIONS.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-xl bg-white border border-sand/80 flex items-center gap-3.5"
+            >
+              <div className="h-10 w-12 shrink-0 flex items-center justify-center">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+              <div className="space-y-0.5">
+                <h4 className="font-serif text-xs font-semibold text-ink leading-tight">
+                  {item.title}
+                </h4>
+                <p className="text-[10px] text-muted leading-tight">
+                  {item.sub}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

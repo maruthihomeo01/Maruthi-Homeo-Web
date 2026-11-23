@@ -13,7 +13,7 @@ export default function GoogleMapEmbed() {
   return (
     <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-sand shadow-sm bg-sand/20">
       <iframe
-        title="Google Maps - Maruthi Homeo Centre Pharmacy"
+        title="Google Maps - Maruthi Homoeo Centre Pharmacy"
         src={embedUrl}
         width="100%"
         height="100%"

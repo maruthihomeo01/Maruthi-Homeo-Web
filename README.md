@@ -1,8 +1,10 @@
-# Maruthi Homeo Centre · Web Application
+# Maruthi Homoeo Centre · Web Application
 
-Official modern web application for **Maruthi Homeo Centre Pharmacy - Clinic** (Shop No: 244/B, ESI Hospital Main Rd, 2nd Block, 41st Cross, Rajajinagar, Bengaluru, Karnataka 560010).
+Official modern web application for **Maruthi Homoeo Centre Pharmacy - Clinic** (Shop No: 244/B, ESI Hospital Main Rd, 2nd Block, 41st Cross, Rajajinagar, Bengaluru, Karnataka 560010).
 
-Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**, featuring a high-performance clinical and pharmacy architecture with genuine German remedy catalog, WhatsApp order enquiry flow, and verified Google reviews.
+Operating as an **authorized wholesale distributor, retail dispensary, and classical homoeopathic clinic** providing genuine German and Indian homoeopathic remedies, unhurried constitutional physician consultations, and pan-India courier dispatch.
+
+Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**, featuring a high-performance clinical and pharmacy architecture with genuine German remedy catalog, official brand partners, WhatsApp order enquiry flow, and verified Google reviews.
 
 ---
 
@@ -21,7 +23,8 @@ F:\Swasthya Homeo\
 │   │   ├── clinic-apothecary.jpeg        # Full-bleed Hero slide 1 apothecary photo
 │   │   ├── homeopathy-globules.jpeg      # Full-bleed Hero slide 2 globules photo
 │   │   ├── botanicals-dropper.jpeg       # Full-bleed Hero slide 3 botanicals photo
-│   │   └── treatments/                   # Curated, condition-specific treatment photos
+│   │   ├── brands/                       # Official pharmaceutical brand partner logos (10 brands)
+│   │   └── treatments/                   # Curated, condition-specific treatment photos (15 treatments)
 ├── src/
 │   ├── assets/images/                    # Bundled high-res assets
 │   ├── components/

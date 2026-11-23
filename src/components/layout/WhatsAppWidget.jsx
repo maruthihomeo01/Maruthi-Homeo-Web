@@ -4,7 +4,7 @@ import { CLINIC_INFO } from '../../data/clinicData';
 const NUDGE_MESSAGES = [
   '👋 Hi! Need doctor consultation in Rajajinagar?',
   '💬 Enquire now for skin, allergy & child care.',
-  '💊 Buy or order genuine German homeopathic medicines!',
+  '💊 Buy or order genuine German homoeopathic medicines!',
   '🌿 Have a question? Ask our clinic desk on WhatsApp.'
 ];
 
@@ -44,12 +44,12 @@ export default function WhatsAppWidget({ isOpen, setIsOpen }) {
     setIsOpen(!isOpen);
   };
 
-  const defaultMessage = 'Hello! I would like to inquire about homeopathic medicine availability and pharmacy timings at Maruthi Homeo Centre, Rajajinagar.';
+  const defaultMessage = 'Hello! I would like to inquire about homoeopathic medicine availability and pharmacy timings at Maruthi Homoeo Centre, Rajajinagar.';
 
   const presets = [
-    { label: 'Buy / Order Medicines', text: 'Hello! I would like to check availability or order homeopathic medicines from Maruthi Homeo Centre Pharmacy, Rajajinagar.' },
-    { label: 'Doctor Timings Enquiry', text: 'Hello! I would like to enquire about doctor consultation timings at Maruthi Homeo Centre Clinic, Rajajinagar.' },
-    { label: 'Send Prescription', text: 'Hello! I have a homeopathic prescription to send for pricing and availability check.' }
+    { label: 'Buy / Order Medicines', text: 'Hello! I would like to check availability or order homoeopathic medicines from Maruthi Homoeo Centre Pharmacy, Rajajinagar.' },
+    { label: 'Doctor Timings Enquiry', text: 'Hello! I would like to enquire about doctor consultation timings at Maruthi Homoeo Centre Clinic, Rajajinagar.' },
+    { label: 'Send Prescription', text: 'Hello! I have a homoeopathic prescription to send for pricing and availability check.' }
   ];
 
   const currentText = message.trim() || defaultMessage;

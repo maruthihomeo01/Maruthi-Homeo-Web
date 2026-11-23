@@ -29,7 +29,7 @@ export default function Header() {
         >
           <img
             src="/images/Logo.png"
-            alt="SwasthyaHomeo Logo"
+            alt="SwasthyaHomoeo Logo"
             className="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-102"
           />
         </button>

@@ -20,7 +20,7 @@ export default function Footer() {
             >
               <img
                 src="/images/Logo-white.png"
-                alt="SwasthyaHomeo Logo"
+                alt="SwasthyaHomoeo Logo"
                 className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain"
               />
             </button>

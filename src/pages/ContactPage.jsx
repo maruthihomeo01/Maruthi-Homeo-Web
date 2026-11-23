@@ -44,10 +44,10 @@ export default function ContactPage() {
         phone: phone.trim(),
         medicines: message.trim(),
         fulfillment: deliveryOption,
-        brand: 'Genuine Brands (Schwabe, Reckeweg, SBL)'
+        brand: 'Genuine Brands (Schwabe, Reckeweg, SBL, ADEL, Bakson)'
       };
       setConfirmationModalData(entry);
-      waMessage = `Namaste Maruthi Homeo Centre! 🌿\nI would like to enquire about homeopathic medicines:\n\n• Name: ${name.trim()}\n• Phone: ${phone.trim()}\n• Fulfillment: ${deliveryOption}\n• Required Medicines / Prescription:\n${message.trim()}\n\nPlease confirm availability and pricing. Thank you!`;
+      waMessage = `Namaste Maruthi Homoeo Centre! 🌿\nI would like to enquire about homoeopathic medicines:\n\n• Name: ${name.trim()}\n• Phone: ${phone.trim()}\n• Fulfillment: ${deliveryOption}\n• Required Medicines / Prescription:\n${message.trim()}\n\nPlease confirm availability and pricing. Thank you!`;
     } else {
       const entry = {
         type: 'consultation',
@@ -59,7 +59,7 @@ export default function ContactPage() {
         notes: message.trim()
       };
       setConfirmationModalData(entry);
-      waMessage = `Namaste Maruthi Homeo Centre! 🌿\nI would like to enquire about doctor consultation timings:\n\n• Patient Name: ${name.trim()}\n• Phone: ${phone.trim()}\n• Health Concern: ${careArea}\n• Mode: ${consultMode}\n• Query / Symptoms:\n${message.trim()}\n\nPlease confirm doctor availability. Thank you!`;
+      waMessage = `Namaste Maruthi Homoeo Centre! 🌿\nI would like to enquire about doctor consultation timings:\n\n• Patient Name: ${name.trim()}\n• Phone: ${phone.trim()}\n• Health Concern: ${careArea}\n• Mode: ${consultMode}\n• Query / Symptoms:\n${message.trim()}\n\nPlease confirm doctor availability. Thank you!`;
     }
 
     // Direct WhatsApp Dispatch
@@ -75,13 +75,13 @@ export default function ContactPage() {
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
-          Maruthi Homeo Centre · Rajajinagar
+          Maruthi Homoeo Centre · Rajajinagar
         </span>
         <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-ink">
           Contact &amp; Enquiries
         </h1>
         <p className="text-sm text-muted leading-relaxed">
-          Order genuine homeopathic medicines, check remedy availability, or enquire about doctor consultation timings.
+          Order genuine homoeopathic medicines, enquire about wholesale distribution, or consult our experienced physicians.
         </p>
       </div>
 
@@ -105,7 +105,7 @@ export default function ContactPage() {
         {/* WhatsApp */}
         <a
           href={`https://wa.me/${CLINIC_INFO.whatsappNumber}?text=${encodeURIComponent(
-            'Hello! I would like to enquire about homeopathic medicines / consultation at Maruthi Homeo Centre.'
+            'Hello! I would like to enquire about homoeopathic medicines / consultation at Maruthi Homoeo Centre.'
           )}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -228,7 +228,7 @@ export default function ContactPage() {
             {enquiryType === 'medicine' && (
               <div>
                 <label htmlFor="delivery-preference" className="block text-xs font-semibold text-ink mb-1.5">
-                  Fulfillment Preference
+                  Fulfillment &amp; Order Type
                 </label>
                 <select
                   id="delivery-preference"
@@ -237,8 +237,9 @@ export default function ContactPage() {
                   className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-sage-600"
                 >
                   <option value="Store Pickup (Rajajinagar)">Store Pickup (Rajajinagar Store)</option>
-                  <option value="Bengaluru Home Delivery / Courier">Bengaluru Home Delivery / Dunzo</option>
+                  <option value="Bengaluru Home Delivery / Courier">Bengaluru Home Delivery / Courier</option>
                   <option value="Pan-India Courier Dispatch">Pan-India Courier Dispatch</option>
+                  <option value="Doctor / Clinic Wholesale Supply">Doctor / Clinic Wholesale Supply</option>
                 </select>
               </div>
             )}
@@ -256,12 +257,15 @@ export default function ContactPage() {
                     onChange={(e) => setCareArea(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-sage-600"
                   >
+                    <option value="Metabolic & Diabetes Care">Diabetes Mellitus &amp; Metabolic Care</option>
+                    <option value="Kidney Stones & Renal Health">Kidney Stones &amp; Renal Health</option>
+                    <option value="Arthritis & Joint Health">Arthritis, Sciatica &amp; Joint Pain</option>
+                    <option value="Skin & Hair Care">Skin &amp; Hair Care (Eczema, Psoriasis)</option>
+                    <option value="Respiratory & Allergies">Respiratory &amp; Allergies (Sinus, Asthma)</option>
+                    <option value="Digestive & Liver Health">Digestive &amp; Liver (Acidity, Piles, Fatty Liver)</option>
+                    <option value="Women's & Pediatric Care">Women's (PCOS) &amp; Pediatric Care</option>
+                    <option value="Stress, Sleep & Migraine">Stress, Sleep &amp; Migraine</option>
                     <option value="General Consultation">General Constitutional Health</option>
-                    <option value="Skin & Hair Care">Skin &amp; Hair Care</option>
-                    <option value="Respiratory & Allergies">Respiratory &amp; Allergies</option>
-                    <option value="Digestive & Metabolic">Digestive &amp; Metabolic</option>
-                    <option value="Women's & Pediatric Care">Women's &amp; Pediatric Care</option>
-                    <option value="Stress, Sleep & Immunity">Stress, Sleep &amp; Migraine</option>
                   </select>
                 </div>
                 <div>

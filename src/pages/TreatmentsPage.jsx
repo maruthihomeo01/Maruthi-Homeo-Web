@@ -51,7 +51,7 @@ export default function TreatmentsPage() {
           </h1>
 
           <p className="text-muted text-sm sm:text-base leading-relaxed">
-            From chronic dermatological and respiratory allergies to pediatric immunity and hormonal balance, Maruthi Homeo Centre delivers constitutional homeopathic care without steroid suppression or habit formation.
+            From diabetes support, kidney stones, and joint arthritis to dermatological allergies, pediatric immunity, and hormonal balance, Maruthi Homoeo Centre delivers constitutional homoeopathic care without steroid suppression or habit formation.
           </p>
 
           {/* Value Badges */}
@@ -67,7 +67,7 @@ export default function TreatmentsPage() {
           <div className="rounded-3xl overflow-hidden border border-sand shadow-sm bg-white relative group">
             <img
               src="/images/botanicals-dropper.jpeg"
-              alt="Fresh botanical leaves with authentic homeopathic dropper"
+              alt="Fresh botanical leaves with authentic homoeopathic dropper"
               className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent flex items-end p-5">
@@ -96,7 +96,7 @@ export default function TreatmentsPage() {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search conditions (e.g. eczema, sinusitis, migraine, PCOS, acidity)..."
+              placeholder="Search conditions (e.g. diabetes, kidney stones, arthritis, eczema, migraine)..."
               className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-sage-600 focus:bg-white transition-all"
             />
             {searchTerm && (
@@ -259,7 +259,7 @@ export default function TreatmentsPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
           <a
             href={`https://wa.me/${CLINIC_INFO.whatsappNumber}?text=${encodeURIComponent(
-              'Hello Maruthi Homeo Centre! I have an inquiry about homeopathic treatments / medicine availability.'
+              'Hello Maruthi Homoeo Centre! I have an inquiry about homoeopathic treatments / medicine availability.'
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -279,7 +279,7 @@ export default function TreatmentsPage() {
 
       {/* 5. Clinical Disclaimer Note */}
       <div className="p-4 sm:p-5 rounded-2xl bg-sage-100/70 border border-sage-200 text-xs text-sage-900 leading-relaxed text-center sm:text-left">
-        <strong>Clinical Note:</strong> Homeopathic remedies are prescribed individually according to the totality of symptoms. If you are experiencing a medical emergency or severe acute distress, please contact an emergency medical service immediately.
+        <strong>Clinical Note:</strong> Homoeopathic remedies are prescribed individually according to the totality of symptoms. If you are experiencing a medical emergency or severe acute distress, please contact an emergency medical service immediately.
       </div>
     </div>
   );

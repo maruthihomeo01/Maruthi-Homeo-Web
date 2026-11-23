@@ -5,19 +5,19 @@ import {
   CLINIC_INFO
 } from '../data/clinicData';
 import MarqueeStrip from '../components/common/MarqueeStrip';
-import TrustindexReviews from '../components/common/TrustindexReviews';
+import GoogleReviewsWidget from '../components/common/GoogleReviewsWidget';
 
 const HERO_SLIDES_FULL = [
   {
-    badge: 'Maruthi Homeo Care · Rajajinagar',
+    badge: 'Maruthi Homoeo Centre · Rajajinagar',
     hasDot: true,
     title1: 'Gentle Healing.',
     title2: 'Root-Cause Care.',
-    subtitle: 'PranaLeaf Homeopathy — personalized, non-toxic remedies for your whole family.',
+    subtitle: 'Authorized wholesale distributor, retail dispensary & classical clinic for your entire family.',
     primaryBtn: { label: 'Enquire / Order Medicines', action: 'contact', color: 'whatsapp' },
     secondaryBtn: { label: 'Explore Treatments', action: 'treatments' },
     image: '/images/clinic-apothecary.jpeg',
-    alt: 'PranaLeaf Homeopathy clinic apothecary',
+    alt: 'Maruthi Homoeo Centre clinic dispensary',
     isDarkBg: true
   },
   {
@@ -29,7 +29,7 @@ const HERO_SLIDES_FULL = [
     primaryBtn: { label: 'Meet Our Clinic', action: 'about', color: 'white' },
     secondaryBtn: null,
     image: '/images/homeopathy-globules.jpeg',
-    alt: 'Classical homeopathic globules and botanicals',
+    alt: 'Classical homoeopathic globules and botanicals',
     isDarkBg: false
   },
   {
@@ -325,7 +325,7 @@ export default function HomePage({ onOpenWhatsApp }) {
           <div className="md:col-span-5 relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[360px] group shadow-sm border border-sand bg-sage-900">
             <img
               src="/images/homeopathy-globules.jpeg"
-              alt="Homeopathic remedies"
+              alt="Homoeopathic remedies"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent p-7 flex flex-col justify-end text-white space-y-2">
@@ -427,7 +427,7 @@ export default function HomePage({ onOpenWhatsApp }) {
                 Explore by Category
               </h2>
               <p className="text-sm text-muted">
-                Tap any specialty card to explore tailored homeopathic treatments, symptom profiles, and clinical protocols.
+                Tap any specialty card to explore tailored homoeopathic treatments, symptom profiles, and clinical protocols.
               </p>
             </div>
             <button
@@ -478,9 +478,9 @@ export default function HomePage({ onOpenWhatsApp }) {
       </section>
 
       {/* ============================================================== */}
-      {/* SECTION 4: Live Verified Google Reviews via Trustindex          */}
+      {/* SECTION 4: Verified Google Reviews                            */}
       {/* ============================================================== */}
-      <TrustindexReviews />
+      <GoogleReviewsWidget />
 
       {/* ============================================================== */}
       {/* SECTION 5: Quick Answers FAQ Preview                           */}
@@ -490,7 +490,7 @@ export default function HomePage({ onOpenWhatsApp }) {
           <div className="space-y-2">
             <span className="text-xs font-semibold uppercase tracking-widest text-sage-700">FAQ</span>
             <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">Quick Answers</h2>
-            <p className="text-sm text-muted">Common questions about homeopathic consultations and medicine dispensing.</p>
+            <p className="text-sm text-muted">Common questions about homoeopathic consultations and medicine dispensing.</p>
           </div>
           <button
             type="button"
@@ -535,7 +535,7 @@ export default function HomePage({ onOpenWhatsApp }) {
               Start Your Healing Journey Today
             </h2>
             <p className="text-sm sm:text-base text-sage-100 max-w-xl mx-auto leading-relaxed">
-              Consult with our classical homeopath at {CLINIC_INFO.shortName}, {CLINIC_INFO.locality}, or schedule a video session from home.
+              Consult with our classical homoeopath at {CLINIC_INFO.shortName}, {CLINIC_INFO.locality}, or schedule a video session from home.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 relative z-10">

@@ -234,7 +234,7 @@ export default function FaqPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
           <a
             href={`https://wa.me/${CLINIC_INFO.whatsappNumber}?text=${encodeURIComponent(
-              'Hello Maruthi Homeo Centre! I have a question about medicines / consultations.'
+              'Hello Maruthi Homoeo Centre! I have a question about medicines / consultations.'
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -254,7 +254,7 @@ export default function FaqPage() {
 
       {/* 5. Clinical Safety Disclaimer */}
       <div className="p-4 sm:p-5 rounded-2xl bg-sage-100/70 border border-sage-200 text-xs text-sage-900 leading-relaxed text-center sm:text-left">
-        <strong>Medical Note:</strong> The information provided here is for patient education and does not replace individualized clinical evaluation. Homeopathic remedies are selected based on constitution and symptom totality. For emergency conditions, please contact an emergency medical centre immediately.
+        <strong>Medical Note:</strong> The information provided here is for patient education and does not replace individualized clinical evaluation. Homoeopathic remedies are selected based on constitution and symptom totality. For emergency conditions, please contact an emergency medical centre immediately.
       </div>
     </div>
   );
