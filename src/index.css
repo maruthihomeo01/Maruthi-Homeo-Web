@@ -73,6 +73,28 @@
   }
 }
 
+/* ECG Heartbeat Pulse Line Loader */
+.ecg-pulse-line {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: ecgPulseDraw 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ecgPulseDraw {
+  0% {
+    stroke-dashoffset: 260;
+    opacity: 0.4;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -260;
+    opacity: 0.3;
+  }
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;

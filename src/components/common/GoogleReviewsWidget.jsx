@@ -152,7 +152,7 @@ export default function GoogleReviewsWidget() {
   };
 
   return (
-    <section className="bg-white py-14 border-y border-sand overflow-hidden">
+    <section className="bg-white py-10 sm:py-12 border-y border-sand overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
         {/* Top Header Card */}
         <div className="bg-alabaster rounded-3xl p-6 sm:p-8 border border-sand shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">

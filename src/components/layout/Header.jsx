@@ -1,9 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigation } from '../../context';
+import BrandLogo from '../common/BrandLogo';
 
 export default function Header() {
   const { activePage, navigateTo } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const diff = currentY - lastScrollY.current;
+
+        if (currentY < 60) {
+          setIsVisible(true);
+        } else if (diff > 6 && !mobileMenuOpen) {
+          setIsVisible(false);
+        } else if (diff < -6) {
+          setIsVisible(true);
+        }
+
+        lastScrollY.current = currentY;
+        ticking = false;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { id: 'home', label: 'Home' },
@@ -19,19 +50,22 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-alabaster/95 backdrop-blur border-b border-sand">
+    <header
+      className={`sticky top-0 z-40 bg-alabaster/95 backdrop-blur border-b border-sand transition-all duration-300 ease-in-out ${
+        isVisible || mobileMenuOpen
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 -translate-y-full pointer-events-none'
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand Logo with Image */}
+        {/* Brand Logo */}
         <button
           type="button"
           onClick={() => handleNavClick('home')}
-          className="flex items-center gap-3 group text-left cursor-pointer focus:outline-none"
+          aria-label="Maruthi Homoeo Home"
+          className="flex items-center gap-3 group text-left cursor-pointer focus:outline-none transition-transform hover:scale-[1.01]"
         >
-          <img
-            src="/images/Logo.png"
-            alt="SwasthyaHomoeo Logo"
-            className="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-102"
-          />
+          <BrandLogo variant="dark" size="md" />
         </button>
 
         {/* Desktop Navigation */}

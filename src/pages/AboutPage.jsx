@@ -81,7 +81,7 @@ export default function AboutPage() {
         <div className="lg:col-span-7 space-y-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-900 text-xs font-semibold tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-            <span>Authorized Distributor · Retail Dispensary · Classical Clinic</span>
+            <span>Est. 2004 · Dealers &amp; Distributors · Retail &amp; Clinic</span>
           </div>
 
           <div className="space-y-3">
@@ -90,10 +90,10 @@ export default function AboutPage() {
               <span className="italic font-normal text-sage-800">Precision in Practice.</span>
             </h1>
             <p className="text-muted text-sm sm:text-base leading-relaxed">
-              Located on ESI Hospital Main Road in Rajajinagar, <strong className="text-ink font-semibold">{CLINIC_INFO.shortName}</strong> operates as an authorized wholesale distributor, premier retail dispensary, and classical constitutional clinic.
+              Established in <strong className="text-ink font-semibold">2004</strong> on ESI Hospital Main Road in Rajajinagar, Bengaluru, <strong className="text-ink font-semibold">{CLINIC_INFO.shortName}</strong> has served families, pharmacies, and medical practitioners for over two decades as authorized <strong className="text-ink font-semibold">dealers and wholesale distributors of homoeopathic medicines</strong>, alongside our retail dispensary and classical clinic.
             </p>
             <p className="text-muted text-xs sm:text-sm leading-relaxed border-l-2 border-sage-500 pl-3.5 py-0.5">
-              We supply medical professionals and families across Karnataka with 100% genuine German remedies (Dr. Reckeweg, Dr. Willmar Schwabe, ADEL) and verified Indian formulations, paired with unhurried doctor consultations.
+              Guided locally by <strong className="text-ink font-medium">Mr. Reddy</strong> alongside consulting physicians including <strong className="text-ink font-medium">Dr. Akshata</strong>, we supply 100% genuine German remedies (Dr. Reckeweg, Dr. Willmar Schwabe, ADEL) and verified Indian formulations paired with unhurried 1-on-1 consultations.
             </p>
           </div>
 
@@ -109,19 +109,19 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Visual Apothecary Card */}
+        {/* Real Storefront Photo */}
         <div className="lg:col-span-5">
           <div className="relative rounded-2xl overflow-hidden shadow-sm border border-sand bg-sage-950">
             <img
-              src="/images/clinic-apothecary.jpeg"
-              alt="Maruthi Homoeo Centre Dispensary"
-              className="w-full h-72 sm:h-80 object-cover opacity-90"
+              src="/images/maruthi-homoeo-storefront.jpg"
+              alt="Maruthi Homoeo Centre Pharmacy - Clinic storefront in Rajajinagar, Bengaluru"
+              className="w-full aspect-[4/3] object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent flex flex-col justify-end p-5 text-white space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-300">
-                Apothecary &amp; Consultation
+            <div className="bg-ink/95 px-4 py-3 text-white space-y-0.5 border-t border-white/10">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-300 block">
+                Established 2004 · Pharmacy &amp; Clinic
               </span>
-              <p className="font-serif text-base font-semibold text-white">
+              <p className="font-serif text-sm font-semibold text-white">
                 {CLINIC_INFO.legalName}
               </p>
               <p className="text-[11px] text-sage-200">
@@ -138,8 +138,8 @@ export default function AboutPage() {
       <section className="border-y border-sand/70 py-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-sand/70">
           <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
-            <span className="font-serif text-2xl font-bold text-ink block">Tri-Pillar</span>
-            <p className="text-xs text-muted">Distributor · Retailer · Clinic</p>
+            <span className="font-serif text-2xl font-bold text-ink block">Est. 2004</span>
+            <p className="text-xs text-muted">20+ years in Rajajinagar</p>
           </div>
           <div className="text-center sm:text-left sm:px-4 pt-2 sm:pt-0 space-y-0.5">
             <span className="font-serif text-2xl font-bold text-ink block">3,000+</span>
@@ -333,29 +333,29 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Clean, Borderless Brand Wall: Transparent canvas, clear view, NO boxed cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-8 sm:gap-x-10 pt-2">
+        {/* Brand Grid: Round white circle backgrounds, logo prominent, text below */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-6 sm:gap-x-8 pt-2">
           {BRAND_PARTNERS.map((brand) => (
             <div
               key={brand.id}
               className="flex flex-col items-center text-center group transition-transform hover:-translate-y-1 duration-200"
             >
-              {/* Logo View: Open, borderless, high clarity */}
-              <div className="h-14 sm:h-16 w-full flex items-center justify-center mb-2.5">
+              {/* Round white circle with shadow — logo prominent inside */}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white shadow-md border border-sand/70 flex items-center justify-center mb-3 group-hover:shadow-lg transition-shadow duration-200 shrink-0">
                 <img
                   src={brand.logo}
                   alt={`${brand.name} Logo`}
                   loading="lazy"
-                  className="max-h-11 sm:max-h-13 max-w-[120px] sm:max-w-[140px] object-contain group-hover:scale-105 transition-all duration-300"
+                  className="max-h-12 sm:max-h-14 max-w-[60px] sm:max-w-[72px] object-contain group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
                 />
               </div>
 
-              {/* Clean Typography */}
+              {/* Typography below the circle */}
               <div className="space-y-0.5">
-                <h3 className="font-serif text-xs sm:text-sm font-semibold text-ink group-hover:text-sage-800 transition-colors">
+                <h3 className="font-serif text-xs sm:text-sm font-semibold text-ink group-hover:text-sage-800 transition-colors leading-tight">
                   {brand.name}
                 </h3>
                 <p className="text-[10px] sm:text-[11px] text-sage-700 font-medium">

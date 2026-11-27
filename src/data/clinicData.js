@@ -1,6 +1,6 @@
 export const CLINIC_INFO = {
-  name: "SwasthyaHomoeo",
-  brandTitle: "Swasthya",
+  name: "Maruthi Homoeo",
+  brandTitle: "Maruthi",
   brandSubtitle: "Homoeo",
   legalName: "Maruthi Homoeo Centre Pharmacy - Clinic",
   listingTitle: "Maruthi Homoeo Centre Pharmacy - Clinic | Online Homoeo medicines - Rajaji Nagar",
@@ -13,7 +13,7 @@ export const CLINIC_INFO = {
   phoneRaw: "+919740009664",
   whatsappNumber: "919740009664",
   whatsappUrl: "https://wa.me/919740009664",
-  email: "care@swasthyahomoeo.com",
+  email: "care@maruthihomoeo.com",
   googlePlaceId: "0x819c427457514433",
   googleMapsUrl: "https://www.google.com/maps/place/Maruthi+Homoeo+Centre+Pharmacy+-+Clinic+%7C+Online+Homoeo+medicines+-+Rajaji+Nagar/@12.990019,77.5556717,17z/data=!4m6!3m5!1s0x3bae3d8c9b5967ab:0x819c427457514433!8m2!3d12.990019!4d77.5556717!16s%2Fg%2F1ptx_nc3t",
   googleMapsCidUrl: "https://maps.google.com/?cid=9339352723700073523",
@@ -344,8 +344,8 @@ export const HERO_SLIDES = [
     subtitle: "Authorized wholesale distributor, retail dispensary & classical clinic for your entire family.",
     primaryCta: { label: "Book Consultation", page: "contact" },
     secondaryCta: { label: "Explore Treatments", page: "treatments" },
-    image: "/images/clinic-apothecary.jpeg",
-    alt: "Maruthi Homoeo Centre clinic apothecary"
+    image: "/images/hero-dispensary.jpg",
+    alt: "Homoeopathic doctor preparing remedies at Maruthi Homoeo Centre dispensary"
   },
   {
     badge: "100% Natural & Safe",
@@ -353,8 +353,8 @@ export const HERO_SLIDES = [
     subtitle: "Sweet globules & gentle dilutions with zero habit-forming side effects.",
     primaryCta: { label: "Meet Our Clinic", page: "about" },
     secondaryCta: { label: "Explore Treatments", page: "treatments" },
-    image: "/images/homeopathy-globules.jpeg",
-    alt: "Classical homoeopathic globules and botanicals"
+    image: "/images/hero-family-kids.jpg",
+    alt: "Happy Indian family with child enjoying natural wellness at home"
   },
   {
     badge: "In-Clinic & Video Consults",
@@ -362,8 +362,8 @@ export const HERO_SLIDES = [
     subtitle: "Structured constitutional care in Rajajinagar & online across Bengaluru.",
     primaryCta: { label: "Schedule Now", page: "contact" },
     secondaryCta: { label: "Explore Treatments", page: "treatments" },
-    image: "/images/botanicals-dropper.jpeg",
-    alt: "Botanical leaves and glass apothecary bottle"
+    image: "/images/hero-skin-wellness.jpg",
+    alt: "Radiant woman experiencing natural skin, allergy and hormonal balance with homoeopathy"
   }
 ];
 

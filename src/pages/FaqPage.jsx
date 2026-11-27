@@ -6,7 +6,8 @@ export default function FaqPage() {
   const { navigateTo } = useNavigation();
   const [activeFaqCategory, setActiveFaqCategory] = useState('All');
   const [faqSearchTerm, setFaqSearchTerm] = useState('');
-  const [openFaqIds, setOpenFaqIds] = useState(() => new Set(['faq-pharmacy-counter', 'faq-steroids-safety']));
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [openFaqIds, setOpenFaqIds] = useState(() => new Set(['faq-pharmacy-counter']));
 
   // Pre-calculate category item counts
   const categoryCounts = useMemo(() => {
@@ -50,24 +51,24 @@ export default function FaqPage() {
   const allFilteredOpen = filteredFaqs.length > 0 && filteredFaqs.every((f) => openFaqIds.has(f.id));
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10 animate-in fade-in duration-300">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12 space-y-5 sm:space-y-10 animate-in fade-in duration-300">
       {/* 1. Header & Reassurance Badges */}
-      <div className="text-center space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold uppercase tracking-wider">
+      <div className="text-center space-y-2 sm:space-y-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>Patient Guidance &amp; Pharmacy Answers</span>
         </div>
 
-        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-ink leading-tight">
+        <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-semibold text-ink leading-tight">
           Frequently Asked Questions
         </h1>
 
-        <p className="text-muted text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        <p className="text-muted text-xs sm:text-base max-w-2xl mx-auto leading-relaxed line-clamp-2 sm:line-clamp-none">
           Transparent answers on genuine German dilutions, zero-steroid safety, online courier orders, and 1-on-1 constitutional doctor care in Rajajinagar.
         </p>
 
-        {/* Quick Value Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-sage-900 font-medium">
+        {/* Quick Value Pills (Desktop/Tablet) */}
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-sage-900 font-medium">
           <span className="px-3 py-1 rounded-lg bg-white border border-sand">🌿 100% Zero Steroids</span>
           <span className="px-3 py-1 rounded-lg bg-white border border-sand">🇩🇪 Genuine Reckeweg &amp; Schwabe</span>
           <span className="px-3 py-1 rounded-lg bg-white border border-sand">📦 Bengaluru &amp; Pan-India Delivery</span>
@@ -75,39 +76,61 @@ export default function FaqPage() {
       </div>
 
       {/* 2. Search & Category Filter Controls */}
-      <div className="bg-white p-5 rounded-2xl border border-sand space-y-4 shadow-xs">
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-          <div className="relative flex-1">
-            <svg
-              className="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input
-              type="text"
-              value={faqSearchTerm}
-              onChange={(e) => setFaqSearchTerm(e.target.value)}
-              placeholder="Search by keyword (e.g. steroids, courier, Reckeweg, coffee, babies, timings)..."
-              className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-sage-600 focus:bg-white transition-all"
-            />
-            {faqSearchTerm && (
-              <button
-                type="button"
-                onClick={() => setFaqSearchTerm('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-ink text-xs p-1 cursor-pointer"
-                aria-label="Clear search"
+      <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-sand space-y-3 sm:space-y-4 shadow-xs">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch sm:items-center justify-between">
+          <div className="flex items-center gap-2 flex-1">
+            <div className="relative flex-1">
+              <svg
+                className="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
               >
-                ✕
-              </button>
-            )}
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                value={faqSearchTerm}
+                onChange={(e) => setFaqSearchTerm(e.target.value)}
+                placeholder="Search (steroids, courier, timings...)"
+                className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-sage-600 focus:bg-white transition-all"
+              />
+              {faqSearchTerm && (
+                <button
+                  type="button"
+                  onClick={() => setFaqSearchTerm('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted hover:text-ink text-xs p-1 cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* Mobile Filter Button */}
+            <button
+              type="button"
+              onClick={() => setIsFilterOpen(true)}
+              aria-label="Filter FAQs by category"
+              className={`sm:hidden relative inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer shrink-0 active:scale-95 ${
+                activeFaqCategory !== 'All'
+                  ? 'bg-sage-800 border-sage-800 text-white shadow-xs'
+                  : 'bg-alabaster border-sand text-ink hover:bg-sage-50'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              <span>Filter</span>
+              {activeFaqCategory !== 'All' && (
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              )}
+            </button>
           </div>
 
           {/* Toggle Expand / Collapse All */}
-          <div className="flex items-center justify-between sm:justify-end gap-3 text-xs text-muted font-medium px-1">
+          <div className="flex items-center justify-between sm:justify-end gap-3 text-xs text-muted font-medium px-0.5">
             <span>
               {filteredFaqs.length} {filteredFaqs.length === 1 ? 'question' : 'questions'}
             </span>
@@ -123,8 +146,23 @@ export default function FaqPage() {
           </div>
         </div>
 
-        {/* Category Pills with Count Badges */}
-        <div className="flex flex-wrap gap-2 pt-1 border-t border-sand/50">
+        {/* Active Category Chip on Mobile */}
+        {activeFaqCategory !== 'All' && (
+          <div className="flex sm:hidden items-center gap-2 pt-0.5">
+            <span className="text-[11px] text-muted">Topic:</span>
+            <button
+              type="button"
+              onClick={() => setActiveFaqCategory('All')}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-100 text-sage-900 text-xs font-semibold cursor-pointer"
+            >
+              <span>{activeFaqCategory}</span>
+              <span className="text-sage-700">✕</span>
+            </button>
+          </div>
+        )}
+
+        {/* Desktop & Tablet Category Pills */}
+        <div className="hidden sm:flex flex-wrap gap-2 pt-2 border-t border-sand/50">
           {FAQ_CATEGORIES.map((cat) => {
             const isActive = activeFaqCategory === cat;
             const count = categoryCounts[cat] || 0;
@@ -153,6 +191,68 @@ export default function FaqPage() {
         </div>
       </div>
 
+      {/* Mobile App-Style Filter Bottom Sheet */}
+      {isFilterOpen && (
+        <div
+          className="fixed inset-0 z-50 sm:hidden flex items-end justify-center bg-ink/50 backdrop-blur-xs animate-in fade-in duration-200"
+          onClick={() => setIsFilterOpen(false)}
+        >
+          <div
+            className="w-full max-w-lg bg-white rounded-t-3xl p-5 pb-7 space-y-4 shadow-2xl border-t border-sand"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-10 h-1 rounded-full bg-sand mx-auto" />
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-semibold text-ink">Filter FAQs</h3>
+                <p className="text-xs text-muted">Choose a topic</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsFilterOpen(false)}
+                className="w-8 h-8 rounded-full bg-alabaster text-ink flex items-center justify-center text-sm font-semibold cursor-pointer"
+                aria-label="Close filter"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="space-y-1.5 max-h-[55vh] overflow-y-auto pr-1">
+              {FAQ_CATEGORIES.map((cat) => {
+                const isActive = activeFaqCategory === cat;
+                const count = categoryCounts[cat] || 0;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => {
+                      setActiveFaqCategory(cat);
+                      setIsFilterOpen(false);
+                    }}
+                    className={`w-full px-4 py-3 rounded-2xl text-sm font-medium flex items-center justify-between transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-sage-800 text-white shadow-xs'
+                        : 'bg-alabaster text-ink hover:bg-sage-50 border border-sand/60'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {isActive && <span>✓</span>}
+                      <span>{cat}</span>
+                    </span>
+                    <span
+                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+                        isActive ? 'bg-white/20 text-white' : 'bg-white text-muted border border-sand'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 3. Modern Interactive Accordion List */}
       {filteredFaqs.length === 0 ? (
         <div className="p-10 text-center rounded-2xl bg-white border border-sand text-muted text-sm shadow-xs space-y-3">
@@ -170,7 +270,7 @@ export default function FaqPage() {
           </button>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2.5 sm:space-y-3">
           {filteredFaqs.map((item) => {
             const isOpen = openFaqIds.has(item.id);
             return (
@@ -184,19 +284,19 @@ export default function FaqPage() {
                   type="button"
                   onClick={() => toggleFaq(item.id)}
                   aria-expanded={isOpen}
-                  className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer focus:outline-none group"
+                  className="w-full text-left p-4 sm:p-6 flex items-start justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none group"
                 >
-                  <div className="space-y-1.5 pr-2">
+                  <div className="space-y-1 sm:space-y-1.5 pr-1">
                     <span className="inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sage-100 text-sage-800">
                       {item.category}
                     </span>
-                    <h2 className="text-base sm:text-lg font-serif font-semibold text-ink group-hover:text-sage-800 transition-colors leading-snug">
+                    <h2 className="text-sm sm:text-lg font-serif font-semibold text-ink group-hover:text-sage-800 transition-colors leading-snug">
                       {item.q}
                     </h2>
                   </div>
 
                   <span
-                    className={`w-7 h-7 rounded-full bg-alabaster border border-sand flex items-center justify-center shrink-0 mt-1 transition-transform duration-200 ${
+                    className={`w-7 h-7 rounded-full bg-alabaster border border-sand flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 ${
                       isOpen ? 'rotate-180 bg-sage-100 text-sage-900 border-sage-300' : 'text-muted group-hover:bg-sage-50'
                     }`}
                   >
@@ -207,7 +307,7 @@ export default function FaqPage() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-muted leading-relaxed border-t border-sand/50 pt-4 bg-alabaster/40 animate-in fade-in duration-150">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-muted leading-relaxed border-t border-sand/50 pt-3 sm:pt-4 bg-alabaster/40 animate-in fade-in duration-150">
                     <p className="text-ink/90 font-sans">{item.a}</p>
                   </div>
                 )}

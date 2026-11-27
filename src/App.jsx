@@ -4,14 +4,17 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppWidget from './components/layout/WhatsAppWidget';
 import ConfirmationModal from './components/common/ConfirmationModal';
+import PulseLoader from './components/common/PulseLoader';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import TreatmentsPage from './pages/TreatmentsPage';
 import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
 
 function MainLayout() {
-  const { activePage } = useNavigation();
+  const { activePage, isNavigating } = useNavigation();
   const [isWaOpen, setIsWaOpen] = useState(false);
 
   const renderActivePage = () => {
@@ -24,6 +27,10 @@ function MainLayout() {
         return <FaqPage onOpenWhatsApp={() => setIsWaOpen(true)} />;
       case 'contact':
         return <ContactPage />;
+      case 'privacy-policy':
+        return <PrivacyPolicyPage />;
+      case 'terms':
+        return <TermsPage />;
       case 'home':
       default:
         return <HomePage onOpenWhatsApp={() => setIsWaOpen(true)} />;
@@ -32,6 +39,7 @@ function MainLayout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-alabaster text-ink font-sans selection:bg-sage-200 selection:text-sage-900">
+      <PulseLoader visible={isNavigating} />
       <Header />
       <main className="flex-1">
         {renderActivePage()}

@@ -13,11 +13,12 @@ const HERO_SLIDES_FULL = [
     hasDot: true,
     title1: 'Gentle Healing.',
     title2: 'Root-Cause Care.',
-    subtitle: 'Authorized wholesale distributor, retail dispensary & classical clinic for your entire family.',
+    subtitle: 'Authorized dealers & wholesale distributors of homoeopathic medicines, retail dispensary & classical clinic for your entire family.',
     primaryBtn: { label: 'Enquire / Order Medicines', action: 'contact', color: 'whatsapp' },
     secondaryBtn: { label: 'Explore Treatments', action: 'treatments' },
-    image: '/images/clinic-apothecary.jpeg',
-    alt: 'Maruthi Homoeo Centre clinic dispensary',
+    image: '/images/hero-dispensary.jpg',
+    alt: 'Homoeopathic doctor preparing remedies at Maruthi Homoeo Centre dispensary',
+    imgPosition: 'object-[70%_20%] sm:object-[64%_center] lg:object-center',
     isDarkBg: true
   },
   {
@@ -28,9 +29,10 @@ const HERO_SLIDES_FULL = [
     subtitle: 'Sweet globules & gentle dilutions with zero habit-forming side effects.',
     primaryBtn: { label: 'Meet Our Clinic', action: 'about', color: 'white' },
     secondaryBtn: null,
-    image: '/images/homeopathy-globules.jpeg',
-    alt: 'Classical homoeopathic globules and botanicals',
-    isDarkBg: false
+    image: '/images/hero-family-kids.jpg',
+    alt: 'Happy Indian family with child enjoying natural wellness at home',
+    imgPosition: 'object-[75%_30%] sm:object-[68%_center] lg:object-center',
+    isDarkBg: true
   },
   {
     badge: 'In-Clinic & Video Consults',
@@ -40,9 +42,10 @@ const HERO_SLIDES_FULL = [
     subtitle: 'Structured constitutional care in Rajajinagar & online across Bengaluru.',
     primaryBtn: { label: 'Consultation Enquiry', action: 'contact', color: 'whatsapp' },
     secondaryBtn: null,
-    image: '/images/botanicals-dropper.jpeg',
-    alt: 'Botanical leaves and glass apothecary bottle',
-    isDarkBg: false
+    image: '/images/hero-skin-wellness.jpg',
+    alt: 'Radiant woman experiencing natural skin, allergy and hormonal balance with homoeopathy',
+    imgPosition: 'object-[72%_20%] sm:object-[65%_center] lg:object-center',
+    isDarkBg: true
   }
 ];
 
@@ -116,10 +119,10 @@ export default function HomePage({ onOpenWhatsApp }) {
   };
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-10 sm:space-y-12">
       {/* 1. Full-Bleed Hero Carousel & Attached Highlights Strip */}
       <div>
-        <div id="hero-carousel" className="relative w-full h-[78vh] min-h-[520px] max-h-[760px] overflow-hidden bg-sage-900">
+        <div id="hero-carousel" className="relative w-full h-[500px] sm:h-[600px] lg:h-[78vh] lg:min-h-[560px] lg:max-h-[760px] overflow-hidden bg-sage-900">
           <div className="relative w-full h-full">
           {HERO_SLIDES_FULL.map((slide, idx) => {
             const isActive = idx === currentSlide;
@@ -132,9 +135,10 @@ export default function HomePage({ onOpenWhatsApp }) {
                 <img
                   src={slide.image}
                   alt={slide.alt}
-                  className="w-full h-full object-cover"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  className={`w-full h-full object-cover ${slide.imgPosition || 'object-center'}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent flex items-center">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/25 sm:bg-gradient-to-r sm:from-ink/90 sm:via-ink/55 sm:to-transparent flex items-end sm:items-center pb-14 sm:pb-0">
                   <div className="max-w-7xl mx-auto w-full px-5 sm:px-12 lg:px-16 py-6 sm:py-0">
                     <div className="max-w-2xl space-y-3.5 sm:space-y-5 text-white">
                       <span className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-sage-100 text-[11px] sm:text-xs font-semibold tracking-wide uppercase">
@@ -320,25 +324,25 @@ export default function HomePage({ onOpenWhatsApp }) {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-5 items-stretch">
-          {/* Featured Tall Photo Bento Card (No WhatsApp Button) */}
-          <div className="md:col-span-5 relative rounded-3xl overflow-hidden min-h-[300px] md:min-h-[360px] group shadow-sm border border-sand bg-sage-900">
+        <div className="grid md:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+          {/* Featured Tall Photo Bento Card */}
+          <div className="md:col-span-5 relative rounded-3xl overflow-hidden min-h-[260px] sm:min-h-[300px] md:min-h-[360px] group shadow-sm border border-sand bg-sage-900">
             <img
               src="/images/homeopathy-globules.jpeg"
               alt="Homoeopathic remedies"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent p-7 flex flex-col justify-end text-white space-y-2">
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent p-5 sm:p-7 flex flex-col justify-end text-white space-y-2">
               <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-300">
                 Signature Service
               </span>
-              <h3 className="font-serif text-2xl font-semibold text-white leading-tight">
+              <h3 className="font-serif text-xl sm:text-2xl font-semibold text-white leading-tight">
                 1-on-1 Constitutional Case-Taking
               </h3>
               <p className="text-xs text-sage-100/90 leading-relaxed max-w-sm">
                 30–45 minute deep-dive exploring physical complaints, thermal sensitivities, emotional stress, and family medical pedigree.
               </p>
-              <div className="pt-2">
+              <div className="pt-1.5 sm:pt-2">
                 <button
                   type="button"
                   onClick={() => navigateTo('contact')}
@@ -350,63 +354,63 @@ export default function HomePage({ onOpenWhatsApp }) {
             </div>
           </div>
 
-          {/* Right 2x2 Bento Box Grid */}
-          <div className="md:col-span-7 grid sm:grid-cols-2 gap-5">
-            {/* Bento Card 1: Navy Accent */}
-            <div className="p-6 rounded-3xl bg-sage-800 text-white flex flex-col justify-between shadow-sm space-y-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
-                <svg className="w-6 h-6 text-emerald-300" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+          {/* Right 2x2 Bento Box Grid (Compact horizontal rows on mobile, Bento cards on sm+) */}
+          <div className="md:col-span-7 grid sm:grid-cols-2 gap-3 sm:gap-5">
+            {/* Bento Card 1: Sage Dark */}
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-sage-800 text-white flex sm:flex-col items-start sm:justify-between gap-3.5 sm:gap-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-300" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-serif text-xl font-semibold text-white">Acute &amp; Chronic Care</h3>
-                <p className="text-xs text-sage-200 mt-1.5 leading-relaxed">
+                <h3 className="font-serif text-base sm:text-xl font-semibold text-white">Acute &amp; Chronic Care</h3>
+                <p className="text-xs text-sage-200 mt-1 sm:mt-1.5 leading-relaxed">
                   From seasonal infections to long-standing skin, allergic, and respiratory conditions without steroid dependency.
                 </p>
               </div>
             </div>
 
             {/* Bento Card 2: Sage Pastel */}
-            <div className="p-6 rounded-3xl bg-sage-100 border border-sage-200 text-ink flex flex-col justify-between shadow-sm space-y-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-sage-100 border border-sage-200 text-ink flex sm:flex-col items-start sm:justify-between gap-3.5 sm:gap-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm shrink-0">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-serif text-xl font-semibold text-ink">Online Video Consults</h3>
-                <p className="text-xs text-muted mt-1.5 leading-relaxed">
+                <h3 className="font-serif text-base sm:text-xl font-semibold text-ink">Online Video Consults</h3>
+                <p className="text-xs text-muted mt-1 sm:mt-1.5 leading-relaxed">
                   High-definition video consultations for patients across Bengaluru and India, with doorstep medicine dispatch.
                 </p>
               </div>
             </div>
 
             {/* Bento Card 3: Crisp White */}
-            <div className="p-6 rounded-3xl bg-white border border-sand text-ink flex flex-col justify-between shadow-sm space-y-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border border-sand text-ink flex sm:flex-col items-start sm:justify-between gap-3.5 sm:gap-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-serif text-xl font-semibold text-ink">In-House Dispensary</h3>
-                <p className="text-xs text-muted mt-1.5 leading-relaxed">
+                <h3 className="font-serif text-base sm:text-xl font-semibold text-ink">In-House Dispensary</h3>
+                <p className="text-xs text-muted mt-1 sm:mt-1.5 leading-relaxed">
                   Authentic German mother tinctures and sterile micro-dilutions (Schwabe, Reckeweg) prepared fresh at our clinic counter.
                 </p>
               </div>
             </div>
 
             {/* Bento Card 4: Warm Alabaster */}
-            <div className="p-6 rounded-3xl bg-[#F3ECE1] border border-sand text-ink flex flex-col justify-between shadow-sm space-y-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm shrink-0">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#F3ECE1] border border-sand text-ink flex sm:flex-col items-start sm:justify-between gap-3.5 sm:gap-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white text-sage-700 flex items-center justify-center shadow-sm shrink-0">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-serif text-xl font-semibold text-ink">Child &amp; Family Care</h3>
-                <p className="text-xs text-muted mt-1.5 leading-relaxed">
+                <h3 className="font-serif text-base sm:text-xl font-semibold text-ink">Child &amp; Family Care</h3>
+                <p className="text-xs text-muted mt-1 sm:mt-1.5 leading-relaxed">
                   Sweet globules children take willingly. Non-drowsy, zero habit-forming remedies safe for all age groups.
                 </p>
               </div>
@@ -418,7 +422,7 @@ export default function HomePage({ onOpenWhatsApp }) {
       {/* ============================================================== */}
       {/* SECTION 3: Visual Interactive Specialty Tiles (Elevated Typography) */}
       {/* ============================================================== */}
-      <section className="bg-white border-y border-sand py-16">
+      <section className="bg-white border-y border-sand py-10 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="space-y-1.5 max-w-xl">
@@ -439,34 +443,36 @@ export default function HomePage({ onOpenWhatsApp }) {
             </button>
           </div>
 
-          {/* 5 Specialty Tiles with Refined Typography and Distinct Pastel Accents */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* 5 Specialty Tiles: Compact 2-col tappable grid on mobile, 5-col elevated cards on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             {SPECIALTY_TILES.map((tile, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => handleTileClick(tile.name)}
-                className={`text-left p-6 rounded-3xl border ${tile.bg} hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer flex flex-col justify-between min-h-[220px]`}
+                className={`text-left p-4 sm:p-6 rounded-2xl sm:rounded-3xl border ${tile.bg} hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer flex flex-col justify-between sm:min-h-[220px] ${
+                  idx === SPECIALTY_TILES.length - 1 ? 'col-span-2 lg:col-span-1' : ''
+                }`}
               >
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white/80 backdrop-blur shadow-sm flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white/80 backdrop-blur shadow-sm flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
                     {tile.icon}
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-bold leading-snug tracking-tight">
+                    <h3 className="font-serif text-base sm:text-lg font-bold leading-snug tracking-tight">
                       {tile.name}
                     </h3>
-                    <p className={`text-[11px] font-semibold mt-1 tracking-wide ${tile.accent}`}>
+                    <p className={`text-[10px] sm:text-[11px] font-semibold mt-1 tracking-wide ${tile.accent}`}>
                       {tile.tag}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-black/5 mt-3">
-                  <p className="text-xs opacity-85 leading-relaxed line-clamp-3">
+                <div className="pt-2.5 sm:pt-3 border-t border-black/5 mt-2.5 sm:mt-3">
+                  <p className="hidden sm:block text-xs opacity-85 leading-relaxed line-clamp-3">
                     {tile.desc}
                   </p>
-                  <p className="text-[11px] font-bold mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <p className="text-[11px] font-bold sm:mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     <span>Explore care</span>
                     <span>&rarr;</span>
                   </p>
