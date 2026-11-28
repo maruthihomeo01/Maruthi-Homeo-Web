@@ -20,7 +20,7 @@ export default function PulseLoader({ visible }) {
         {/* Subtle static baseline track */}
         <path
           d="M4 36 H58 L68 36 L76 22 L86 48 L98 10 L110 54 L120 26 L128 36 H216"
-          stroke="#D8E3EE"
+          stroke="#E7E1D8"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -36,9 +36,9 @@ export default function PulseLoader({ visible }) {
         />
         <defs>
           <linearGradient id="ecgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1A5FA8" />
-            <stop offset="55%" stopColor="#1E9B4B" />
-            <stop offset="100%" stopColor="#10B981" />
+            <stop offset="0%" stopColor="#ea580c" />
+            <stop offset="50%" stopColor="#207d51" />
+            <stop offset="100%" stopColor="#ea580c" />
           </linearGradient>
         </defs>
       </svg>

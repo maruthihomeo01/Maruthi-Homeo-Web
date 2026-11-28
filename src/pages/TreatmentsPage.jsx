@@ -1,14 +1,51 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigation } from '../context';
 import { CLINIC_INFO, TREATMENTS, TREATMENT_CATEGORIES } from '../data/clinicData';
+import TreatmentCardsCarousel from '../components/common/TreatmentCardsCarousel';
 
 const ITEMS_PER_PAGE = 6;
+
+function RevealTreatmentCard({ index, children }) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(() => typeof IntersectionObserver === 'undefined');
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ animationDelay: `${(index % 6) * 70}ms` }}
+      className={isVisible ? 'treatment-card-visible h-full' : 'treatment-card-hidden h-full'}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function TreatmentsPage() {
   const { selectedCategory, setSelectedCategory, navigateTo } = useNavigation();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'carousel'
   const gridTopRef = useRef(null);
 
   // Pre-calculate category item counts for clear UX
@@ -68,7 +105,7 @@ export default function TreatmentsPage() {
       <section className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-center">
         <div className="lg:col-span-7 space-y-2.5 sm:space-y-4 order-2 lg:order-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-saffron-500 animate-pulse" />
             <span>Classical Care &amp; Certified Dispensary</span>
           </div>
 
@@ -124,7 +161,7 @@ export default function TreatmentsPage() {
                 value={searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search conditions (diabetes, skin, migraine...)"
-                className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-sage-600 focus:bg-white transition-all"
+                className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-saffron-500 focus:bg-white transition-all"
               />
               {searchTerm && (
                 <button
@@ -159,9 +196,11 @@ export default function TreatmentsPage() {
             </button>
           </div>
 
-          <div className="flex items-center justify-between sm:justify-end gap-2 text-xs text-muted font-medium px-0.5">
+          <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 text-xs text-muted font-medium px-0.5">
             <span>
-              Showing {filteredTreatments.length === 0 ? 0 : startIdx + 1}–{Math.min(startIdx + ITEMS_PER_PAGE, filteredTreatments.length)} of {filteredTreatments.length} conditions
+              {viewMode === 'carousel'
+                ? `${filteredTreatments.length} ${filteredTreatments.length === 1 ? 'condition' : 'conditions'} in Coverflow`
+                : `Showing ${filteredTreatments.length === 0 ? 0 : startIdx + 1}–${Math.min(startIdx + ITEMS_PER_PAGE, filteredTreatments.length)} of ${filteredTreatments.length} conditions`}
             </span>
             {(selectedCategory !== 'All' || searchTerm) && (
               <button
@@ -170,11 +209,35 @@ export default function TreatmentsPage() {
                   handleCategorySelect('All');
                   handleSearchChange('');
                 }}
-                className="text-sage-700 hover:text-sage-900 font-semibold underline underline-offset-2 ml-2 cursor-pointer"
+                className="text-saffron-600 hover:text-saffron-700 font-semibold underline underline-offset-2 cursor-pointer"
               >
                 Reset
               </button>
             )}
+            <div className="inline-flex items-center p-0.5 rounded-xl bg-alabaster border border-sand shrink-0">
+              <button
+                type="button"
+                onClick={() => setViewMode('grid')}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
+                  viewMode === 'grid'
+                    ? 'bg-sage-800 text-white shadow-2xs'
+                    : 'text-muted hover:text-ink'
+                }`}
+              >
+                Grid
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('carousel')}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
+                  viewMode === 'carousel'
+                    ? 'bg-saffron-500 text-white shadow-2xs'
+                    : 'text-muted hover:text-ink'
+                }`}
+              >
+                Coverflow
+              </button>
+            </div>
           </div>
         </div>
 
@@ -304,74 +367,84 @@ export default function TreatmentsPage() {
             Show All Treatments
           </button>
         </div>
+      ) : viewMode === 'carousel' ? (
+        <div className="rounded-3xl bg-white border border-sand py-6 px-4 sm:p-8 shadow-xs">
+          <TreatmentCardsCarousel
+            key={`${selectedCategory}-${q}`}
+            items={filteredTreatments}
+            onSelectItem={handleInquire}
+            ctaLabel="Enquire About This Care"
+          />
+        </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            {paginatedTreatments.map((t) => (
-            <div
-              key={t.id}
-              className="group rounded-2xl bg-white border border-sand hover:border-sage-400 overflow-hidden flex flex-row sm:flex-col justify-between hover:shadow-md transition-all duration-300"
-            >
-              {/* Contextual Image: Compact square thumb on mobile, wide banner on sm+ */}
-              <div className="relative w-24 h-24 m-3 rounded-xl sm:m-0 sm:rounded-none sm:h-48 sm:w-full shrink-0 overflow-hidden bg-sage-100 self-center sm:self-auto">
-                <img
-                  src={t.image}
-                  alt={t.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/botanicals-dropper.jpeg';
-                  }}
-                />
-                <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-ink/65 via-transparent to-transparent opacity-90" />
-                <div className="hidden sm:block absolute top-3 left-3">
-                  <span className="inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full bg-white/95 backdrop-blur text-sage-900 shadow-xs border border-white/60">
-                    {t.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Card Content */}
-              <div className="py-3 pr-3.5 pl-0.5 sm:p-6 flex-1 flex flex-col justify-between space-y-2 sm:space-y-4 min-w-0">
-                <div className="space-y-1 sm:space-y-2">
-                  <span className="sm:hidden inline-block text-[10px] font-semibold text-sage-700 uppercase tracking-wider">
-                    {t.category}
-                  </span>
-                  <h3 className="font-serif text-sm sm:text-lg font-semibold text-ink group-hover:text-sage-800 transition-colors leading-snug">
-                    {t.title}
-                  </h3>
-                  <p className="text-[11px] sm:text-sm text-muted leading-relaxed line-clamp-2 sm:line-clamp-3">
-                    {t.summary}
-                  </p>
-
-                  {/* Clean Tags (Desktop & Tablet) */}
-                  <div className="hidden sm:flex flex-wrap gap-1.5 pt-1.5">
-                    {t.tags.map((tag, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {paginatedTreatments.map((t, idx) => (
+              <RevealTreatmentCard key={`${t.id}-${safePage}`} index={idx}>
+                <article className="h-full group rounded-2xl sm:rounded-3xl bg-white border border-sand hover:border-saffron-400 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
+                  {/* Contextual Image Banner on both Mobile & Desktop */}
+                  <div className="relative h-44 sm:h-48 w-full shrink-0 overflow-hidden bg-sage-100">
+                    <img
+                      src={t.image}
+                      alt={t.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/botanicals-dropper.jpeg';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-transparent to-transparent opacity-90" />
+                    <div className="absolute top-3 left-3">
                       <span
-                        key={idx}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-alabaster border border-sand text-muted"
+                        className={`inline-block text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur shadow-xs border ${
+                          idx % 2 === 0
+                            ? 'bg-saffron-50/95 text-saffron-700 border-saffron-200'
+                            : 'bg-white/95 text-sage-900 border-white/60'
+                        }`}
                       >
-                        #{tag}
+                        {t.category}
                       </span>
-                    ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Single Clean CTA Action */}
-                <div className="pt-1.5 sm:pt-3 sm:border-t sm:border-sand/60">
-                  <button
-                    type="button"
-                    onClick={() => handleInquire(t)}
-                    className="sm:w-full py-1.5 px-3 sm:py-2.5 sm:px-4 rounded-lg sm:rounded-xl bg-sage-50 hover:bg-sage-800 text-sage-800 hover:text-white border border-sage-200 hover:border-sage-800 text-[11px] sm:text-xs font-semibold transition-all duration-200 cursor-pointer inline-flex items-center justify-center gap-1.5 group/btn active:scale-95"
-                  >
-                    <span>Enquire</span>
-                    <span className="hidden sm:inline">About This Care</span>
-                    <span className="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+                  {/* Card Content */}
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4 min-w-0">
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <h3 className="font-serif text-base sm:text-lg font-semibold text-ink group-hover:text-sage-800 transition-colors leading-snug">
+                        {t.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted leading-relaxed line-clamp-3">
+                        {t.summary}
+                      </p>
+
+                      {/* Clean Tags */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {t.tags.map((tag, tagIdx) => (
+                          <span
+                            key={tagIdx}
+                            className="text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-md bg-alabaster border border-sand text-muted"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Single Clean CTA Action */}
+                    <div className="pt-2.5 sm:pt-3 border-t border-sand/60">
+                      <button
+                        type="button"
+                        onClick={() => handleInquire(t)}
+                        className="w-full py-2 px-3 sm:py-2.5 sm:px-4 rounded-xl bg-saffron-50 hover:bg-saffron-500 text-saffron-600 hover:text-white border border-saffron-200 hover:border-saffron-500 text-xs font-semibold transition-all duration-200 cursor-pointer inline-flex items-center justify-center gap-1.5 group/btn active:scale-95"
+                      >
+                        <span>Enquire About This Care</span>
+                        <span className="group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </RevealTreatmentCard>
+            ))}
           </div>
 
           {/* Pagination Controls */}
@@ -431,7 +504,7 @@ export default function TreatmentsPage() {
       {/* 4. Bottom Advisory: Prescription & Medicine Ordering */}
       <section className="rounded-3xl bg-white border border-sand p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-1.5 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-sage-700">
+          <span className="text-xs font-bold uppercase tracking-wider text-saffron-500">
             Have a Specific Remedy or Prescription?
           </span>
           <h2 className="font-serif text-xl sm:text-2xl font-semibold text-ink">
@@ -449,14 +522,14 @@ export default function TreatmentsPage() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-xs sm:text-sm shadow-xs transition-all inline-flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all inline-flex items-center gap-2"
           >
             <span>Ask on WhatsApp</span>
           </a>
           <button
             type="button"
             onClick={() => navigateTo('contact')}
-            className="px-5 py-2.5 rounded-xl bg-sage-800 hover:bg-sage-900 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-saffron-500 hover:bg-saffron-600 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
           >
             <span>Visit / Enquire &rarr;</span>
           </button>

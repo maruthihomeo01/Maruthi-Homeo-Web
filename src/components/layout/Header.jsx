@@ -51,11 +51,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-alabaster/95 backdrop-blur border-b border-sand transition-all duration-300 ease-in-out ${
-        isVisible || mobileMenuOpen
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 -translate-y-full pointer-events-none'
-      }`}
+      className={`sticky top-0 z-40 bg-alabaster/95 backdrop-blur border-b border-sand transition-all duration-300 ease-in-out ${isVisible || mobileMenuOpen
+        ? 'opacity-100 translate-y-0'
+        : 'opacity-0 -translate-y-full pointer-events-none'
+        }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand Logo */}
@@ -77,9 +76,8 @@ export default function Header() {
                 key={link.id}
                 type="button"
                 onClick={() => handleNavClick(link.id)}
-                className={`nav-link py-1 hover:text-sage-700 transition-colors cursor-pointer ${
-                  isActive ? 'active text-sage-700 font-semibold border-b-2 border-sage-600' : ''
-                }`}
+                className={`nav-link py-1 hover:text-saffron-600 transition-colors cursor-pointer ${isActive ? 'active text-sage-700 font-semibold border-b-2 border-saffron-500' : ''
+                  }`}
               >
                 {link.label}
               </button>
@@ -92,7 +90,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => handleNavClick('contact')}
-            className="hidden sm:inline-flex items-center gap-1.5 bg-sage-700 hover:bg-sage-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 bg-saffron-500 hover:bg-saffron-600 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             Enquire / Order Medicines
           </button>
@@ -124,9 +122,8 @@ export default function Header() {
                 key={link.id}
                 type="button"
                 onClick={() => handleNavClick(link.id)}
-                className={`mobile-nav-link w-full text-left block px-3 py-2 rounded-lg text-sm font-medium cursor-pointer ${
-                  isActive ? 'bg-sage-100 text-sage-800 font-semibold' : 'text-ink hover:bg-sage-100'
-                }`}
+                className={`mobile-nav-link w-full text-left block px-3 py-2 rounded-lg text-sm font-medium cursor-pointer ${isActive ? 'bg-saffron-50 text-saffron-600 border-l-4 border-saffron-500 font-semibold' : 'text-ink hover:bg-sage-50'
+                  }`}
               >
                 {link.label}
               </button>
@@ -136,7 +133,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => handleNavClick('contact')}
-              className="w-full text-center bg-sage-700 hover:bg-sage-800 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-sm transition-colors cursor-pointer"
+              className="w-full text-center bg-saffron-500 hover:bg-saffron-600 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-sm transition-colors cursor-pointer"
             >
               Enquire / Order Medicines
             </button>

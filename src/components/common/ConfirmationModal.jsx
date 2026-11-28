@@ -81,7 +81,7 @@ Please confirm doctor availability and timings.`;
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded-lg bg-[#25D366] hover:bg-[#1ebe5d] text-white font-medium whitespace-nowrap transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-sage-600 hover:bg-sage-700 text-white font-medium whitespace-nowrap transition-colors"
           >
             Chat Now
           </a>

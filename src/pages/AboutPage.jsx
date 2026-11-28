@@ -80,7 +80,7 @@ export default function AboutPage() {
       <section className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <div className="lg:col-span-7 space-y-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-900 text-xs font-semibold tracking-wide">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-saffron-500 animate-pulse" />
             <span>Est. 2004 · Dealers &amp; Distributors · Retail &amp; Clinic</span>
           </div>
 
@@ -92,7 +92,7 @@ export default function AboutPage() {
             <p className="text-muted text-sm sm:text-base leading-relaxed">
               Established in <strong className="text-ink font-semibold">2004</strong> on ESI Hospital Main Road in Rajajinagar, Bengaluru, <strong className="text-ink font-semibold">{CLINIC_INFO.shortName}</strong> has served families, pharmacies, and medical practitioners for over two decades as authorized <strong className="text-ink font-semibold">dealers and wholesale distributors of homoeopathic medicines</strong>, alongside our retail dispensary and classical clinic.
             </p>
-            <p className="text-muted text-xs sm:text-sm leading-relaxed border-l-2 border-sage-500 pl-3.5 py-0.5">
+            <p className="text-muted text-xs sm:text-sm leading-relaxed border-l-2 border-saffron-500 pl-3.5 py-0.5">
               Guided locally by <strong className="text-ink font-medium">Mr. Reddy</strong> alongside consulting physicians including <strong className="text-ink font-medium">Dr. Akshata</strong>, we supply 100% genuine German remedies (Dr. Reckeweg, Dr. Willmar Schwabe, ADEL) and verified Indian formulations paired with unhurried 1-on-1 consultations.
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
             <button
               type="button"
               onClick={() => navigateTo('contact')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sage-800 hover:bg-sage-900 text-white font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-saffron-500 hover:bg-saffron-600 text-white font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer"
             >
               <span>Contact Clinic &amp; Dispensary</span>
               <span>&rarr;</span>
@@ -118,7 +118,7 @@ export default function AboutPage() {
               className="w-full aspect-[4/3] object-cover object-center"
             />
             <div className="bg-ink/95 px-4 py-3 text-white space-y-0.5 border-t border-white/10">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-300 block">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-saffron-400 block">
                 Established 2004 · Pharmacy &amp; Clinic
               </span>
               <p className="font-serif text-sm font-semibold text-white">
@@ -166,7 +166,7 @@ export default function AboutPage() {
       >
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
           <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+            <span className="text-xs font-bold uppercase tracking-widest text-saffron-500">
               Clinical Methodology
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
@@ -189,24 +189,24 @@ export default function AboutPage() {
                 onClick={() => setActiveStep(idx)}
                 className={`p-3 sm:p-4 rounded-xl text-left transition-all duration-300 relative cursor-pointer border ${
                   isActive
-                    ? 'bg-white border-sage-600 shadow-sm'
+                    ? 'bg-white border-saffron-500 shadow-sm'
                     : 'bg-alabaster/80 border-sand hover:bg-white text-muted'
                 }`}
               >
                 {/* Animated progress indicator bar on active card */}
                 {isActive && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-sage-600 rounded-t-xl" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-saffron-500 rounded-t-xl" />
                 )}
                 <div className="flex items-center justify-between">
                   <span
                     className={`font-mono text-xs font-bold ${
-                      isActive ? 'text-sage-800' : 'text-muted/60'
+                      isActive ? 'text-saffron-600' : 'text-muted/60'
                     }`}
                   >
                     {step.num}
                   </span>
                   {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                    <span className="w-2 h-2 rounded-full bg-saffron-500 animate-ping" />
                   )}
                 </div>
                 <p
@@ -250,7 +250,7 @@ export default function AboutPage() {
                 key={i}
                 className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-alabaster border border-sand/60 text-ink/80 text-[11px] font-medium"
               >
-                <span className="text-emerald-600 font-bold">&check;</span>
+                <span className="text-sage-600 font-bold">&check;</span>
                 {item}
               </span>
             ))}
@@ -263,7 +263,7 @@ export default function AboutPage() {
       {/* ============================================================== */}
       <section className="space-y-6">
         <div className="space-y-1 max-w-xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+          <span className="text-xs font-bold uppercase tracking-widest text-saffron-500">
             Operational Infrastructure
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
@@ -277,7 +277,7 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-3 gap-5 pt-1">
           {/* Wing 1 */}
           <div className="p-5 sm:p-6 rounded-2xl bg-white border border-sand/80 space-y-3">
-            <span className="text-[10px] font-mono font-bold tracking-widest text-slate-500 block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-sage-700 block">
               WING 01 / B2B SUPPLY
             </span>
             <h3 className="font-serif text-base font-semibold text-ink">
@@ -290,7 +290,7 @@ export default function AboutPage() {
 
           {/* Wing 2 */}
           <div className="p-5 sm:p-6 rounded-2xl bg-white border border-sand/80 space-y-3">
-            <span className="text-[10px] font-mono font-bold tracking-widest text-amber-700 block">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-saffron-600 block">
               WING 02 / DISPENSARY
             </span>
             <h3 className="font-serif text-base font-semibold text-ink">
@@ -322,7 +322,7 @@ export default function AboutPage() {
       {/* ============================================================== */}
       <section className="space-y-8 pt-4 border-t border-sand/70">
         <div className="space-y-1 max-w-xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+          <span className="text-xs font-bold uppercase tracking-widest text-saffron-500">
             Direct Sourcing &amp; Distribution
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-ink">
@@ -373,7 +373,7 @@ export default function AboutPage() {
       {/* ============================================================== */}
       <section className="space-y-4 pt-4 border-t border-sand/70">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-          <span className="text-xs font-bold uppercase tracking-widest text-sage-700">
+          <span className="text-xs font-bold uppercase tracking-widest text-saffron-500">
             Statutory Standards &amp; Accreditations
           </span>
           <span className="text-[11px] text-muted">

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigation } from '../context';
 import { FAQS, FAQ_CATEGORIES, CLINIC_INFO } from '../data/clinicData';
 
-export default function FaqPage() {
+export default function FaqPage({ onOpenWhatsApp }) {
   const { navigateTo } = useNavigation();
   const [activeFaqCategory, setActiveFaqCategory] = useState('All');
   const [faqSearchTerm, setFaqSearchTerm] = useState('');
@@ -55,7 +55,7 @@ export default function FaqPage() {
       {/* 1. Header & Reassurance Badges */}
       <div className="text-center space-y-2 sm:space-y-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-saffron-500 animate-pulse" />
           <span>Patient Guidance &amp; Pharmacy Answers</span>
         </div>
 
@@ -94,7 +94,7 @@ export default function FaqPage() {
                 value={faqSearchTerm}
                 onChange={(e) => setFaqSearchTerm(e.target.value)}
                 placeholder="Search (steroids, courier, timings...)"
-                className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-sage-600 focus:bg-white transition-all"
+                className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-sand bg-alabaster text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-saffron-500 focus:bg-white transition-all"
               />
               {faqSearchTerm && (
                 <button
@@ -113,11 +113,10 @@ export default function FaqPage() {
               type="button"
               onClick={() => setIsFilterOpen(true)}
               aria-label="Filter FAQs by category"
-              className={`sm:hidden relative inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer shrink-0 active:scale-95 ${
-                activeFaqCategory !== 'All'
-                  ? 'bg-sage-800 border-sage-800 text-white shadow-xs'
-                  : 'bg-alabaster border-sand text-ink hover:bg-sage-50'
-              }`}
+              className={`sm:hidden relative inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer shrink-0 active:scale-95 ${activeFaqCategory !== 'All'
+                ? 'bg-sage-800 border-sage-800 text-white shadow-xs'
+                : 'bg-alabaster border-sand text-ink hover:bg-sage-50'
+                }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -171,17 +170,15 @@ export default function FaqPage() {
                 key={cat}
                 type="button"
                 onClick={() => setActiveFaqCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-sage-800 text-white shadow-xs'
-                    : 'bg-alabaster text-muted border border-sand hover:bg-sage-100 hover:text-ink'
-                }`}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${isActive
+                  ? 'bg-sage-800 text-white shadow-xs'
+                  : 'bg-alabaster text-muted border border-sand hover:bg-sage-100 hover:text-ink'
+                  }`}
               >
                 <span>{cat}</span>
                 <span
-                  className={`text-[10px] font-semibold px-1.5 py-0.2 rounded-full ${
-                    isActive ? 'bg-white/25 text-white' : 'bg-sand text-muted'
-                  }`}
+                  className={`text-[10px] font-semibold px-1.5 py-0.2 rounded-full ${isActive ? 'bg-white/25 text-white' : 'bg-sand text-muted'
+                    }`}
                 >
                   {count}
                 </span>
@@ -228,20 +225,18 @@ export default function FaqPage() {
                       setActiveFaqCategory(cat);
                       setIsFilterOpen(false);
                     }}
-                    className={`w-full px-4 py-3 rounded-2xl text-sm font-medium flex items-center justify-between transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-sage-800 text-white shadow-xs'
-                        : 'bg-alabaster text-ink hover:bg-sage-50 border border-sand/60'
-                    }`}
+                    className={`w-full px-4 py-3 rounded-2xl text-sm font-medium flex items-center justify-between transition-all cursor-pointer ${isActive
+                      ? 'bg-sage-800 text-white shadow-xs'
+                      : 'bg-alabaster text-ink hover:bg-sage-50 border border-sand/60'
+                      }`}
                   >
                     <span className="flex items-center gap-2">
                       {isActive && <span>✓</span>}
                       <span>{cat}</span>
                     </span>
                     <span
-                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-white text-muted border border-sand'
-                      }`}
+                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-white text-muted border border-sand'
+                        }`}
                     >
                       {count}
                     </span>
@@ -255,19 +250,45 @@ export default function FaqPage() {
 
       {/* 3. Modern Interactive Accordion List */}
       {filteredFaqs.length === 0 ? (
-        <div className="p-10 text-center rounded-2xl bg-white border border-sand text-muted text-sm shadow-xs space-y-3">
-          <p className="text-base text-ink font-serif font-medium">No questions matching your search.</p>
-          <p className="text-xs">Try searching for keywords like "steroids", "courier", "Reckeweg", or "timings".</p>
-          <button
-            type="button"
-            onClick={() => {
-              setActiveFaqCategory('All');
-              setFaqSearchTerm('');
-            }}
-            className="px-4 py-2 rounded-xl bg-sage-800 text-white text-xs font-semibold cursor-pointer"
-          >
-            Show All Questions
-          </button>
+        <div className="p-8 sm:p-10 text-center rounded-2xl bg-white border border-sand text-muted text-sm shadow-xs space-y-3">
+          <p className="text-base text-ink font-serif font-medium">No matching FAQ records found.</p>
+          <p className="text-xs max-w-md mx-auto">
+            Couldn&apos;t find what you&apos;re looking for? Chat online with our clinic desk on WhatsApp for an immediate personal reply.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+            <a
+              href={`https://wa.me/${CLINIC_INFO.whatsappNumber}?text=${encodeURIComponent(
+                faqSearchTerm.trim()
+                  ? `Namaste Maruthi Homoeo Centre! I have a question:\n"${faqSearchTerm.trim()}"`
+                  : 'Hello Maruthi Homoeo Centre! I have a question about medicines / consultations.'
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-sage-600 hover:bg-sage-700 text-white text-xs font-semibold shadow-xs transition-colors inline-flex items-center gap-1.5"
+            >
+              <span>Chat Online on WhatsApp</span>
+              <span>&rarr;</span>
+            </a>
+            {onOpenWhatsApp && (
+              <button
+                type="button"
+                onClick={onOpenWhatsApp}
+                className="px-4 py-2 rounded-xl bg-saffron-500 hover:bg-saffron-600 text-white text-xs font-semibold cursor-pointer transition-colors"
+              >
+                Open Q&amp;A Assistant
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveFaqCategory('All');
+                setFaqSearchTerm('');
+              }}
+              className="px-4 py-2 rounded-xl bg-sage-800 hover:bg-sage-900 text-white text-xs font-semibold cursor-pointer transition-colors"
+            >
+              Show All Questions
+            </button>
+          </div>
         </div>
       ) : (
         <div className="space-y-2.5 sm:space-y-3">
@@ -276,9 +297,8 @@ export default function FaqPage() {
             return (
               <div
                 key={item.id}
-                className={`rounded-2xl border transition-all duration-200 bg-white overflow-hidden ${
-                  isOpen ? 'border-sage-400 shadow-sm' : 'border-sand hover:border-sand/80 shadow-xs'
-                }`}
+                className={`rounded-2xl border transition-all duration-200 bg-white overflow-hidden ${isOpen ? 'border-saffron-400 shadow-sm' : 'border-sand hover:border-sand/80 shadow-xs'
+                  }`}
               >
                 <button
                   type="button"
@@ -287,7 +307,7 @@ export default function FaqPage() {
                   className="w-full text-left p-4 sm:p-6 flex items-start justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none group"
                 >
                   <div className="space-y-1 sm:space-y-1.5 pr-1">
-                    <span className="inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sage-100 text-sage-800">
+                    <span className="inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-saffron-50 text-saffron-600 border border-saffron-200">
                       {item.category}
                     </span>
                     <h2 className="text-sm sm:text-lg font-serif font-semibold text-ink group-hover:text-sage-800 transition-colors leading-snug">
@@ -296,9 +316,8 @@ export default function FaqPage() {
                   </div>
 
                   <span
-                    className={`w-7 h-7 rounded-full bg-alabaster border border-sand flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 bg-sage-100 text-sage-900 border-sage-300' : 'text-muted group-hover:bg-sage-50'
-                    }`}
+                    className={`w-7 h-7 rounded-full bg-alabaster border border-sand flex items-center justify-center shrink-0 mt-0.5 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-saffron-50 text-saffron-600 border-saffron-200' : 'text-muted group-hover:bg-sage-50'
+                      }`}
                   >
                     <svg className="w-3.5 h-3.5 fill-none stroke-currentColor stroke-width-2.5" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -320,7 +339,7 @@ export default function FaqPage() {
       {/* 4. "Still Have Questions?" Direct Help Card */}
       <div className="rounded-3xl bg-white border border-sand p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-1.5 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-sage-700">
+          <span className="text-xs font-bold uppercase tracking-wider text-saffron-500">
             Have a Specific Query or Need a Remedy?
           </span>
           <h2 className="font-serif text-xl sm:text-2xl font-semibold text-ink">
@@ -338,14 +357,14 @@ export default function FaqPage() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-xs sm:text-sm shadow-xs transition-all inline-flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all inline-flex items-center gap-2"
           >
             <span>Ask on WhatsApp</span>
           </a>
           <button
             type="button"
             onClick={() => navigateTo('contact')}
-            className="px-5 py-2.5 rounded-xl bg-sage-800 hover:bg-sage-900 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-saffron-500 hover:bg-saffron-600 text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
           >
             <span>Visit / Enquire &rarr;</span>
           </button>

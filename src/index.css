@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --color-alabaster: #F4F8FC;
-  --color-sage-50: #EEF7F1;
-  --color-sage-100: #DCF0E3;
-  --color-sage-200: #B8E0C7;
-  --color-sage-600: #1E9B4B;
-  --color-sage-700: #1A5FA8;
-  --color-sage-800: #144882;
-  --color-sage-900: #0E335C;
-  --color-sand: #D8E3EE;
-  --color-ink: #0F1E2E;
-  --color-muted: #4B5E71;
+  /* ── Canvas & Neutrals ── */
+  --color-alabaster: #FAF8F5;
+  --color-sand: #E7E1D8;
+  --color-ink: #17211C;
+  --color-muted: #526058;
+
+  /* ── Botanical Green (logo "MARUTHI" / ECG / structural) ── */
+  --color-sage-50:  #EFF7F3;
+  --color-sage-100: #D9EDE3;
+  --color-sage-200: #B5DBC8;
+  --color-sage-300: #7EC4A6;
+  --color-sage-400: #4DAA82;
+  --color-sage-600: #207d51;
+  --color-sage-700: #196441;
+  --color-sage-800: #134D32;
+  --color-sage-900: #0D3523;
+
+  /* ── Saffron Orange (logo heart / "Homoeo" / CTAs / accents) ── */
+  --color-saffron-50:  #FFF7ED;
+  --color-saffron-100: #FFEDD5;
+  --color-saffron-200: #FED7AA;
+  --color-saffron-400: #FB923C;
+  --color-saffron-500: #ea580c;
+  --color-saffron-600: #c2410c;
+  --color-saffron-700: #9a3412;
 
   --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans:  "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @layer base {
   body {
-    background-color: #F4F8FC;
-    color: #0F1E2E;
+    background-color: #FAF8F5;
+    color: #17211C;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
@@ -29,13 +43,49 @@
   }
 }
 
-/* Animations from example template */
+/* ── Navigation active state ── */
 .nav-link.active {
-  color: #1A5FA8;
+  color: #207d51;
   font-weight: 600;
-  border-bottom: 2px solid #1E9B4B;
+  border-bottom: 2px solid #ea580c;
 }
 
+/* ── Primary CTA button helper class ── */
+.btn-primary {
+  background-color: #ea580c;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+.btn-primary:hover {
+  background-color: #c2410c;
+}
+
+/* ── Secondary (green) button helper class ── */
+.btn-green {
+  background-color: #207d51;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.15s;
+}
+.btn-green:hover {
+  background-color: #134D32;
+}
+
+/* ── Section accent line (use on headings) ── */
+.accent-line::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, #ea580c 0%, #207d51 100%);
+  border-radius: 2px;
+}
+
+/* ── Brand Marquee ── */
 .marquee-track {
   display: flex;
   width: max-content;
@@ -44,15 +94,11 @@
 }
 
 @keyframes marqueeScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* Reviews Infinite Loop Marquee */
+/* ── Reviews Infinite Loop Marquee ── */
 .reviews-marquee-track {
   display: flex;
   width: max-content;
@@ -65,15 +111,11 @@
 }
 
 @keyframes reviewsLoopScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* ECG Heartbeat Pulse Line Loader */
+/* ── ECG Heartbeat Pulse Line Loader ── */
 .ecg-pulse-line {
   stroke-dasharray: 260;
   stroke-dashoffset: 260;
@@ -81,37 +123,60 @@
 }
 
 @keyframes ecgPulseDraw {
+  0%   { stroke-dashoffset: 260;  opacity: 0.4; }
+  50%  { stroke-dashoffset: 0;    opacity: 1;   }
+  100% { stroke-dashoffset: -260; opacity: 0.3; }
+}
+
+/* ── Custom scrollbars (branded) ── */
+::-webkit-scrollbar        { width: 8px; height: 8px; }
+::-webkit-scrollbar-track  { background: #EFF7F3; }
+::-webkit-scrollbar-thumb  { background: #207d51; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+
+/* ── Hide horizontal scrollbar inside interactive card scrollers ── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Scroll-triggered Treatment Card entrance animation ── */
+@keyframes treatmentCardReveal {
   0% {
-    stroke-dashoffset: 260;
-    opacity: 0.4;
-  }
-  50% {
-    stroke-dashoffset: 0;
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
   }
   100% {
-    stroke-dashoffset: -260;
-    opacity: 0.3;
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+.treatment-card-hidden {
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
 }
 
-/* Leaflet map styles */
+.treatment-card-visible {
+  animation: treatmentCardReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treatment-card-hidden {
+    opacity: 1;
+    transform: none;
+  }
+  .treatment-card-visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Leaflet map ── */
 .leaflet-container {
   width: 100%;
   height: 100%;

@@ -6,10 +6,10 @@ import BrandLogo from '../common/BrandLogo';
 const currentYear = 2026;
 
 export default function Footer() {
-  const { navigateTo } = useNavigation();
+  const { activePage, navigateTo } = useNavigation();
 
   return (
-    <footer className="bg-sage-900 text-sage-200 mt-16 border-t border-sage-800">
+    <footer className={`bg-sage-900 text-sage-200 ${activePage === 'home' ? 'mt-0' : 'mt-16'} border-t-4 border-saffron-500`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
 
         {/* Main grid: 4 columns on desktop, stacked on mobile */}
@@ -46,7 +46,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => navigateTo(page)}
-                    className="hover:text-white transition-colors cursor-pointer text-left"
+                    className="hover:text-saffron-400 transition-colors cursor-pointer text-left"
                   >
                     {label}
                   </button>
@@ -65,10 +65,10 @@ export default function Footer() {
 
             <div className="space-y-1 pt-1">
               <div className="flex items-center gap-2 text-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
-                <span className="text-emerald-300 font-semibold">Mon – Sat: 10:00 AM – 8:30 PM</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-saffron-400 shrink-0 animate-pulse" />
+                <span className="text-sage-100 font-semibold">Mon – Sat: 10:00 AM – 8:30 PM</span>
               </div>
-              <p className="text-[11px] text-amber-300/80 pl-3.5">Sunday Closed</p>
+              <p className="text-[11px] text-saffron-400 pl-3.5">Sunday Closed</p>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export default function Footer() {
                 href={CLINIC_INFO.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-emerald-400 hover:text-white transition-colors text-xs"
+                className="flex items-center gap-2 text-saffron-400 hover:text-saffron-200 transition-colors text-xs"
               >
                 <span className="text-base">📍</span>
                 <span className="font-medium">Google Maps →</span>

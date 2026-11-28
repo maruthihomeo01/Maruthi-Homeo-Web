@@ -327,6 +327,42 @@ export const FAQS = [
     category: "Consultations & Clinic",
     q: "How long does it take to see noticeable improvements in chronic conditions?",
     a: "Acute issues (colds, acute cough, indigestion) frequently show relief within 24 to 48 hours. Long-standing chronic ailments (diabetes support, eczema, psoriasis, allergic rhinitis, migraine, PCOS) typically show measurable symptom tapering within 3 to 6 weeks, with lasting healing occurring over several months."
+  },
+  {
+    id: "faq-location-address",
+    category: "Pharmacy & Orders",
+    q: "Where is Maruthi Homoeo Centre located and what is the nearest landmark?",
+    a: "We are located at Shop No: 244/B, ESI Hospital Main Rd, 2nd Block, 41st Cross, Rajajinagar, Bengaluru, Karnataka 560010 — near the Old Police Station and opposite Deepashree Clinical Lab. Call +91 97400 09664 if you need directions."
+  },
+  {
+    id: "faq-sunday-hours",
+    category: "Pharmacy & Orders",
+    q: "What are the pharmacy opening hours and is the clinic open on Sunday?",
+    a: "Our pharmacy counter is open Monday to Saturday from 10:00 AM to 8:30 PM (Sunday Closed). Doctor consultations run Monday to Saturday: Morning 10:00 AM – 1:30 PM and Evening 6:00 PM – 8:30 PM."
+  },
+  {
+    id: "faq-brands-potencies",
+    category: "Pharmacy & Orders",
+    q: "Which homoeopathic medicine brands and potencies do you stock?",
+    a: "We stock 3,000+ genuine remedies across Dr. Reckeweg (Germany R1–R89 drops), Dr. Willmar Schwabe, ADEL / Pekana, SBL Global, Bakson's, Wheezal, Allen Homoeo, Medisynth, Dr. Burnett, and Adven Biotech — including dilutions (6C, 30C, 200C, 1M, LM), mother tinctures (Q), biochemics, and globules."
+  },
+  {
+    id: "faq-wholesale-orders",
+    category: "Pharmacy & Orders",
+    q: "How can doctors or pharmacies place wholesale and bulk orders?",
+    a: "Maruthi Homoeo Centre is an authorized wholesale distributor supplying clinics, practitioners, and dispensaries across Bengaluru and Karnataka. Send your clinic name and required stock list on WhatsApp (+91 97400 09664) for wholesale pricing and dispatch."
+  },
+  {
+    id: "faq-appointment-fees",
+    category: "Consultations & Clinic",
+    q: "Do I need a prior appointment and what are the consultation charges?",
+    a: "Walk-in patients are welcome during doctor hours (Mon–Sat: 10:00 AM – 1:30 PM & 6:00 PM – 8:30 PM). For advance slot confirmation, video consultations, or current consultation & medicine charges, please message us directly on WhatsApp at +91 97400 09664."
+  },
+  {
+    id: "faq-conditions-treated",
+    category: "Consultations & Clinic",
+    q: "What health conditions do your homoeopathic doctors treat?",
+    a: "Our doctors provide classical constitutional care for skin & hair (eczema, psoriasis, hair fall, dandruff), allergies & respiratory (sinusitis, allergic rhinitis, asthma), metabolic & lifestyle (diabetes support, thyroid, hypertension), digestive & renal (kidney stones, fatty liver, piles, acidity/IBS), arthritis & joint pain, women's PCOS, pediatric immunity, and migraine/insomnia."
   }
 ];
 
@@ -336,6 +372,36 @@ export const FAQ_CATEGORIES = [
   "Medicines & Safety",
   "Consultations & Clinic"
 ];
+
+export const BOT_QUICK_QUESTIONS = [
+  { label: "Doctor Timings", query: "What are the doctor consultation timings?" },
+  { label: "Address & Landmark", query: "Where is Maruthi Homoeo located?" },
+  { label: "Order / Courier", query: "Do you offer home delivery or courier?" },
+  { label: "Brands Stocked", query: "Which homoeopathic medicine brands do you stock?" },
+  { label: "Zero Steroids?", query: "Do homoeopathic medicines contain any steroids?" },
+  { label: "Wholesale Orders", query: "How can clinics place wholesale orders?" }
+];
+
+export const BOT_KEYWORD_MAP = {
+  "faq-location-address": ["address", "location", "locate", "located", "where", "landmark", "map", "directions", "rajajinagar", "esi", "hospital", "road", "block", "pincode", "560010", "reach", "visit", "near"],
+  "faq-sunday-hours": ["sunday", "open", "opening", "close", "closing", "closed", "pharmacy", "store", "shop", "hours", "today", "saturday", "monday", "weekend", "when"],
+  "faq-doctor-timings": ["doctor", "physician", "dr", "akshata", "consultation", "consult", "morning", "evening", "schedule", "timing", "timings", "hours", "available", "slot", "when"],
+  "faq-appointment-fees": ["consultation fee", "consultation fees", "consultation charge", "consultation charges", "doctor fee", "doctor fees", "appointment", "book", "booking", "slot", "fee", "fees", "charge", "charges", "cost", "price", "pricing", "how much", "walk in", "walk-in", "walkin"],
+  "faq-courier-delivery": ["home delivery", "doorstep delivery", "speed post", "india post", "delivery", "deliver", "courier", "shipping", "ship", "dispatch", "doorstep", "send", "order", "prescription"],
+  "faq-brands-potencies": ["brand", "brands", "reckeweg", "reckweg", "schwabe", "swabe", "sbl", "adel", "pekana", "bakson", "baksons", "wheezal", "allen", "medisynth", "burnett", "adven", "german", "potency", "potencies", "dilution", "dilutions", "tincture", "tinctures", "drops", "r1", "r89", "globules", "biochemic", "stock", "medicine", "medicines", "remedy", "remedies"],
+  "faq-wholesale-orders": ["wholesale", "distributor", "dealer", "dealers", "b2b", "bulk", "practitioner", "stockist", "karnataka", "supply", "reseller"],
+  "faq-distributor-retail": ["retail", "wholesale", "both", "distributor"],
+  "faq-pharmacy-counter": ["buy", "walk in", "walk-in", "without appointment", "counter", "over the counter", "otc", "direct"],
+  "faq-steroids-safety": ["steroid", "steroids", "cortisone", "chemical", "chemicals", "side effect", "side effects", "heavy metal", "pure", "purity", "safe", "safety", "natural"],
+  "faq-children-elderly": ["child", "children", "kid", "kids", "baby", "infant", "toddler", "pediatric", "elderly", "senior", "old", "pregnant", "pregnancy", "mother", "sweet", "globules", "drowsy"],
+  "faq-allopathy-interaction": ["allopathy", "allopathic", "english medicine", "tablet", "tablets", "alongside", "together", "interaction", "gap", "interval", "stop", "bp", "thyroid", "diabetes"],
+  "faq-coffee-diet": ["coffee", "tea", "onion", "garlic", "mint", "food", "diet", "eat", "restriction", "restrictions", "avoid", "before", "after", "dose"],
+  "faq-case-taking": ["constitutional", "case", "case taking", "case-taking", "first visit", "duration", "minutes", "simillimum", "happen", "process"],
+  "faq-online-consults": ["online", "video", "remote", "far", "abroad", "teleconsultation"],
+  "faq-time-to-results": ["how long", "days", "weeks", "months", "time", "fast", "quick", "result", "results", "improvement", "cure", "heal", "relief"],
+  "faq-diabetes-care": ["diabetes", "sugar", "glucose", "insulin", "neuropathy", "burning feet", "kidney", "stone", "stones", "renal", "fatty liver"],
+  "faq-conditions-treated": ["treat", "treatment", "treatments", "disease", "condition", "conditions", "illness", "problem", "problems", "cure"]
+};
 
 export const HERO_SLIDES = [
   {

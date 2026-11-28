@@ -93,7 +93,7 @@ export default function ContactPage() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-5 sm:space-y-8 animate-in fade-in duration-300">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-1.5 sm:space-y-2">
-        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-sage-700">
+        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-saffron-500">
           Maruthi Homoeo Centre · Rajajinagar
         </span>
         <h1 className="font-serif text-2xl sm:text-4xl font-semibold text-ink">
@@ -132,9 +132,9 @@ export default function ContactPage() {
           )}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3 sm:p-5 rounded-2xl bg-white border border-sand hover:border-emerald-400 hover:shadow-sm transition-all group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-3.5 active:scale-95 sm:active:scale-100"
+          className="p-3 sm:p-5 rounded-2xl bg-white border border-sand hover:border-sage-600 hover:shadow-sm transition-all group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-3.5 active:scale-95 sm:active:scale-100"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-base sm:text-lg">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-sage-100 text-sage-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform text-base sm:text-lg">
             💬
           </div>
           <div>
@@ -143,8 +143,8 @@ export default function ContactPage() {
               <span className="hidden sm:inline">WhatsApp Quick Chat</span>
             </p>
             <p className="hidden sm:block text-sm font-bold text-ink mt-0.5">Instant Enquiry</p>
-            <p className="hidden sm:block text-[11px] text-[#25D366] font-medium mt-0.5">Send prescriptions &rarr;</p>
-            <p className="sm:hidden text-[10px] text-[#25D366] font-medium">Quick chat</p>
+            <p className="hidden sm:block text-[11px] text-sage-600 font-medium mt-0.5">Send prescriptions &rarr;</p>
+            <p className="sm:hidden text-[10px] text-sage-600 font-medium">Quick chat</p>
           </div>
         </a>
 
@@ -278,7 +278,7 @@ export default function ContactPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Rajesh Rao"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-sage-600"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500"
                 />
               </div>
 
@@ -293,7 +293,7 @@ export default function ContactPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 98XXX XXXXX"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-sage-600"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500"
                 />
               </div>
             </div>
@@ -320,7 +320,7 @@ export default function ContactPage() {
                       ? 'e.g., Clinic/Store name, required brands (Reckeweg, Schwabe, SBL) & quantities...'
                       : 'e.g., Briefly share your symptoms or preferred in-clinic / video consultation time...'
                 }
-                className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-sage-600"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-sand bg-alabaster text-sm focus:outline-none focus:ring-2 focus:ring-saffron-500"
               />
             </div>
 
@@ -331,14 +331,14 @@ export default function ContactPage() {
                 id="terms-agree"
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
-                className="mt-0.5 w-4 h-4 accent-sage-700 cursor-pointer shrink-0"
+                className="mt-0.5 w-4 h-4 accent-saffron-500 cursor-pointer shrink-0"
               />
               <label htmlFor="terms-agree" className="text-xs text-muted leading-relaxed cursor-pointer select-none">
                 I agree to the{' '}
                 <button
                   type="button"
                   onClick={() => navigateTo('privacy-policy')}
-                  className="text-sage-700 underline font-semibold hover:text-sage-900 transition-colors"
+                  className="text-saffron-600 underline font-semibold hover:text-saffron-700 transition-colors"
                 >
                   Privacy Policy
                 </button>
@@ -346,7 +346,7 @@ export default function ContactPage() {
                 <button
                   type="button"
                   onClick={() => navigateTo('terms')}
-                  className="text-sage-700 underline font-semibold hover:text-sage-900 transition-colors"
+                  className="text-saffron-600 underline font-semibold hover:text-saffron-700 transition-colors"
                 >
                   Terms & Conditions
                 </button>
@@ -358,7 +358,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={!agreedToTerms}
-              className="w-full py-3.5 px-5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-sm shadow hover:shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-5 rounded-xl bg-sage-600 hover:bg-sage-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-sm shadow hover:shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <svg className="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
                 <path d="M12.031 2c-5.51 0-9.99 4.478-9.99 9.99 0 1.761.459 3.48 1.332 5l-1.413 5.161 5.289-1.387a9.96 9.96 0 004.782 1.216h.004c5.509 0 9.99-4.479 9.99-9.99 0-2.668-1.039-5.177-2.925-7.064A9.923 9.923 0 0012.031 2zm0 18.283h-.004a8.27 8.27 0 01-4.218-1.157l-.303-.18-3.136.822.836-3.056-.197-.314a8.272 8.272 0 01-1.272-4.408c0-4.57 3.719-8.289 8.294-8.289 2.215 0 4.298.863 5.864 2.43 1.566 1.568 2.428 3.652 2.428 5.867 0 4.571-3.719 8.285-8.29 8.285zm4.544-6.208c-.249-.125-1.472-.727-1.7-.81-.229-.083-.395-.125-.561.125-.166.249-.643.81-.788.976-.145.166-.291.187-.539.062s-1.05-.387-2.001-1.234c-.74-.66-1.24-1.475-1.385-1.724-.145-.249-.015-.384.109-.508.112-.112.249-.291.374-.436.124-.145.166-.249.249-.415.083-.166.042-.312-.021-.436s-.561-1.35-.769-1.849c-.202-.486-.407-.42-.561-.428-.145-.008-.312-.01-.478-.01s-.436.062-.664.312c-.229.249-.872.852-.872 2.078 0 1.226.893 2.41 1.018 2.576.125.166 1.757 2.684 4.257 3.764.595.257 1.06.41 1.423.525.599.19 1.144.163 1.575.099.481-.072 1.472-.602 1.68-1.184.208-.582.208-1.08.145-1.184-.062-.104-.228-.166-.477-.291z" />
